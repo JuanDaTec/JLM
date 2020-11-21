@@ -43,21 +43,21 @@
             <div class="carousel-item active">
                 <img src="<?= media(); ?>images/polo3-freepik.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h4><img src="<?= media(); ?>images/logo_for_white_bg.png" alt="Logo" style="width: 280px;"></h4>
+                    <h4><img src="<?= media(); ?>images/logo_for_white_bg.png" alt="Logo" style="width: 380px;"></h4>
                     <p>Diseños agradables, listo para cualquier uso, en cualquier lugar</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="<?= media(); ?>images/polo2-freepik.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h4><img src="<?= media(); ?>images/logo_for_white_bg.png" alt="Logo" style="width: 280px;"></h4>
+                    <h4><img src="<?= media(); ?>images/logo_for_white_bg.png" alt="Logo" style="width: 380px;"></h4>
                     <p>Es facil darse cuenta de la comodidad en cada prenda</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="<?= media(); ?>images/polo1-freepik.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h4><img src="<?= media(); ?>images/logo_for_white_bg.png" alt="Logo" style="width: 280px;"></h4>
+                    <h4><img src="<?= media(); ?>images/logo_for_white_bg.png" alt="Logo" style="width: 380px;"></h4>
                     <p>Texturas y calidad, JLM es caracteristico en ello</p>
                 </div>
             </div>
