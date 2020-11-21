@@ -26,8 +26,8 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="search" placeholder="¿Buscas algo?">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
             </form>
         </div>
     </nav>
@@ -43,8 +43,7 @@
             <div class="carousel-item active">
                 <img src="<?= media(); ?>images/polo3-freepik.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <h5><img src="<?= media(); ?>images/logo_alt1.png" alt="Logo" style="width: 170px;"></h5>
                 </div>
             </div>
             <div class="carousel-item">
@@ -73,32 +72,32 @@
     </div>
     <br><br>
 
-    
+
 
     <div class="container">
         <div class="card-deck">
             <div class="card">
                 <img src="<?= media(); ?>images/card1_freepik.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <h5 class="card-title">JLM y Las mejores texturas del mercado</h5>
+                    <p class="card-text">Nuestra tienda comprende que la calidad es lo primero, manejamos las mejores telas y texturas para garantizar la calidad de nuestros productos.</p>
+                    <p class="card-text"><small class="text-muted">Ultima actualizacion: 17 Noviembre 2020</small></p>
                 </div>
             </div>
             <div class="card">
                 <img src="<?= media(); ?>images/card2_freepik.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <h5 class="card-title">El diseño es lo nuestro</h5>
+                    <p class="card-text">Eligelo como quieras, nuestros diseños prediseñados ya son geniales, pero si deseas personalizarlos, este es tu lugar.</p>
+                    <p class="card-text"><small class="text-muted">Ultima actualizacion: 17 Noviembre 2020</small></p>
                 </div>
             </div>
             <div class="card">
                 <img src="<?= media(); ?>images/card3_freepik.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <h5 class="card-title">El blanco, perfecto para estampar.</h5>
+                        <p class="card-text">JLM destaca por calidad, es por eso que tenemos a disposicion algunas prendas blancas para estampar cualquier cosa... ¡Si! ¡Lo que sea!</p>
+                    <p class="card-text"><small class="text-muted">Ultima actualizacion: 17 Noviembre 2020</small></p>
                 </div>
             </div>
         </div>
