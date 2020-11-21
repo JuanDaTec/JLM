@@ -43,21 +43,22 @@
             <div class="carousel-item active">
                 <img src="<?= media(); ?>images/polo3-freepik.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5><img src="<?= media(); ?>images/logo_alt1.png" alt="Logo" style="width: 170px;"></h5>
+                    <h4><img src="<?= media(); ?>images/logo_for_white_bg.png" alt="Logo" style="width: 170px;"></h4>
+                    <p>Diseños agradables, listo para cualquier uso, en cualquier lugar</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="<?= media(); ?>images/polo2-freepik.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h4><img src="<?= media(); ?>images/logo_for_white_bg.png" alt="Logo" style="width: 170px;"></h4>
+                    <p>Es facil darse cuenta de la comodidad en cada prenda</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="<?= media(); ?>images/polo1-freepik.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    <h4><img src="<?= media(); ?>images/logo_for_white_bg.png" alt="Logo" style="width: 170px;"></h4>
+                    <p>Texturas y calidad, JLM es caracteristico en ello</p>
                 </div>
             </div>
         </div>
@@ -95,7 +96,7 @@
             <div class="card">
                 <img src="<?= media(); ?>images/card3_freepik.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">El blanco, perfecto para estampar.</h5>
+                    <h5 class="card-title">El blanco, perfecto para estampar</h5>
                         <p class="card-text">JLM destaca por calidad, es por eso que tenemos a disposicion algunas prendas blancas para estampar cualquier cosa... ¡Si! ¡Lo que sea!</p>
                     <p class="card-text"><small class="text-muted">Ultima actualizacion: 17 Noviembre 2020</small></p>
                 </div>
