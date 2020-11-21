@@ -33,7 +33,6 @@
     </nav>
 
 
-    //Slides 3 imagenes
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -73,6 +72,8 @@
         </a>
     </div>
     <br><br>
+
+    
 
     <div class="container">
         <div class="card-deck">
