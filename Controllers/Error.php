@@ -7,7 +7,7 @@
 
         public function notFound()
         {
-            $this->views->getView($this,"Error");
+            $this->views->getView($this,"error");
         }
 
     }
