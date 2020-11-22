@@ -2620,14 +2620,14 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #FFF;
-  background-color: #009688;
-  border-color: #009688;
+  background-color:#493D73;
+  border-color:#3A3259;
 }
 
 .btn-primary:hover {
   color: #FFF;
-  background-color: #007065;
-  border-color: #00635a;
+  background-color:#3A3259;
+  border-color: #322C40;
 }
 
 .btn-primary:focus, .btn-primary.focus {
@@ -5213,7 +5213,7 @@ input[type="button"].btn-block {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #009688;
+  color: #493D73;
   background-color: #FFF;
   border: 1px solid #dee2e6;
 }
@@ -5247,8 +5247,8 @@ input[type="button"].btn-block {
 .page-item.active .page-link {
   z-index: 1;
   color: #FFF;
-  background-color: #009688;
-  border-color: #009688;
+  background-color: #3A3259;
+  border-color: #3A3259;
 }
 
 .page-item.disabled .page-link {
@@ -11960,7 +11960,7 @@ body.stop-scrolling {
 }
 
 .sweet-alert input:focus {
-  border-color: #009688;
+  border-color: #493D73;
   outline: none;
 }
 
@@ -11984,7 +11984,7 @@ body.stop-scrolling {
 }
 
 .sweet-alert button {
-  background-color: #009688 !important;
+  background-color: #493D73 !important;
   color: white;
   border: none;
   -webkit-box-shadow: none;
@@ -12004,11 +12004,11 @@ body.stop-scrolling {
 }
 
 .sweet-alert button:hover {
-  background-color: #00877a;
+  background-color: #3A3259;
 }
 
 .sweet-alert button:active {
-  background-color: #00635a;
+  background-color: #322C40;
 }
 
 .sweet-alert button.cancel {

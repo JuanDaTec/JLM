@@ -3,3 +3,8 @@
     background: gray;
     padding: 6px;
 }
+
+.form_title{
+    width: 50px; 
+    position: absolute;
+}

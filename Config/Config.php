@@ -14,7 +14,7 @@
     const DB_PASSWORD = "";
     const DB_CHARSET = "charset=utf8";
 
-    //Separadores decimal y millar Ej: 24,1989.00
+    //Separadores decimal y millar
     const SPD = ".";
     const SPM = ".";
 
