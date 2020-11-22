@@ -8,10 +8,10 @@
 
 
     //Datos de conexión a Bases de datos
-    const DB_HOST = "localhost";
-    const DB_NAME = "jlm";
-    const DB_USER = "root";
-    const DB_PASSWORD = "";
+    const DB_HOST = "r1bsyfx4gbowdsis.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
+    const DB_NAME = "s54kondnnt9xh1u9";
+    const DB_USER = "pko1xn2l8f7qoldm";
+    const DB_PASSWORD = "ougur9lptzcg5bgc";
     const DB_CHARSET = "charset=utf8";
 
     //Separadores decimal y millar
