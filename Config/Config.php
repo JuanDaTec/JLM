@@ -1,7 +1,7 @@
 <?php
 
     //define("BASE_URL", "http://localhost/jlm/");
-    const BASE_URL = "https://jlmworks.herokuapp.com/";
+    const BASE_URL = "http://localhost/jlm";
 
     //Zona horaria de Bogotá
     date_default_timezone_set('America/Bogota');
