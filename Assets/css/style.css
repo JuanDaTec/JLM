@@ -16,3 +16,13 @@
 .notBlock{
     display: none;
 }
+
+.form_title_bread{
+    width: 150px;
+}
+
+@media screen and (max-width: 600px) {
+    .form_title_bread{
+        display: none;
+    }
+}

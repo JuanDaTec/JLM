@@ -13,10 +13,7 @@ getModal('modalRoles', $data);
             <p>&nbsp;</p>
             <p>Adapta los roles del sistema a tus necesidades.</p>
         </div>
-        <ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="<?= base_url(); ?>/roles"><?= $data['page_title'] ?></a></li>
-        </ul>
+            <img class="form_title_bread" src="<?= media(); ?>/images/logo_alt1.png" alt="User Image">
     </div>
     <div class="row">
         <div class="col-md-12">
