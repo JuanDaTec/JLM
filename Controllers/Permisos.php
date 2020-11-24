@@ -60,14 +60,13 @@
 				}
 				if($requestPermiso > 0)
 				{
-					$arrResponse = array('status' => true, 'msg' => 'Permisos asignados correctamente.');
+					$arrResponse = array('status' => true, 'msg' => 'Permisos asignados en el sistema.');
 				}else{
 					$arrResponse = array("status" => false, "msg" => 'No es posible asignar los permisos.');
 				}
 				echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
 			}
 			die();
-		
 		}
     }
 ?>

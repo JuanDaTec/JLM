@@ -168,6 +168,7 @@ function fntDelRol(){
                                 tableRoles.api().ajax.reload(function(){
                                     fntEditRol();
                                     fntDelRol();
+                                    fntPermisos();
                                 });
                             }else{
                                 swal("Atención!", objData.msg , "error");
@@ -216,5 +217,16 @@ function fntSavePermisos(evnet){
     request.open("POST",ajaxUrl,true);
     request.send(formData);
 
+    request.onreadystatechange = function(){
+        if(request.readyState == 4 && request.status == 200){
+            var objData = JSON.parse(request.responseText);
+            if(objData.status)
+            {
+                swal("¡Guardado correctamente!", objData.msg ,"success");
+            }else{
+                swal("Error", objData.msg , "error");
+            }
+        }
+    }
     
 }

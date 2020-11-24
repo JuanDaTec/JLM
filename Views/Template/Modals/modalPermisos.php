@@ -25,8 +25,8 @@
                     <tr>
                       <th>#</th>
                       <th>Módulo</th>
-                      <th>Lectura</th>
-                      <th>Escritura</th>
+                      <th>Ver</th>
+                      <th>Crear</th>
                       <th>Actualizar</th>
                       <th>Eliminar</th>
                     </tr>
