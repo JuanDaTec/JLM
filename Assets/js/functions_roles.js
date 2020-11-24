@@ -81,9 +81,11 @@ function openModal() {
 }
 
 window.addEventListener("load", function () {
+    setTimeout(() => {
         fntEditRol();
         fntDelRol();
         fntPermisos();
+    }, 500);
 }, false);
 
 function fntEditRol(){
