@@ -2046,7 +2046,7 @@ pre code {
 .form-control:focus {
   color: #495057;
   background-color: #FFF;
-  border-color: #009688;
+  border-color: #493D73;
   outline: 0;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -2631,21 +2631,21 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary:focus, .btn-primary.focus {
-  -webkit-box-shadow: 0 0 0 0 rgba(38, 166, 154, 0.5);
-          box-shadow: 0 0 0 0 rgba(38, 166, 154, 0.5);
+  -webkit-box-shadow: 0 0 0 0 rgba(132, 169, 217, 0.5);
+          box-shadow: 0 0 0 0 rgba(132, 169, 217, 0.5);
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
   color: #FFF;
-  background-color: #009688;
-  border-color: #009688;
+  background-color: #84A9D9;
+  border-color: #493D73;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
   color: #FFF;
-  background-color: #00635a;
-  border-color: #00564e;
+  background-color: #84A9D9;
+  border-color: #493D73;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
@@ -4044,7 +4044,7 @@ input[type="button"].btn-block {
 }
 
 .custom-select:focus {
-  border-color: #009688;
+  border-color: #493D73;
   outline: 0;
   -webkit-box-shadow: 0 0 0 0 rgba(0, 150, 136, 0.25);
           box-shadow: 0 0 0 0 rgba(0, 150, 136, 0.25);
@@ -6048,13 +6048,13 @@ a.badge-dark:focus, a.badge-dark.focus {
   font-size: 1.3125rem;
   font-weight: 700;
   line-height: 1;
-  color: #000;
+  color: white;
   text-shadow: 0 1px 0 #FFF;
   opacity: .5;
 }
 
 .close:hover {
-  color: #000;
+  color: white;
   text-decoration: none;
 }
 
@@ -14827,7 +14827,7 @@ be a descendant of the grid when it is being dragged.
 
 ::selection {
   color: #FFF;
-  background-color: #00635a;
+  background-color: #493D73;
 }
 
 @media (min-width: 768px) {
@@ -15766,6 +15766,7 @@ be a descendant of the grid when it is being dragged.
 .toggle input[type="checkbox"] + .button-indecator:before {
   content: "";
   font-family: "FontAwesome";
+  text-align: center;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -15781,7 +15782,7 @@ be a descendant of the grid when it is being dragged.
 
 .toggle input[type="checkbox"]:checked + .button-indecator:before {
   content: "";
-  color: #009688;
+  color: #3A3259;
   -webkit-animation: toggleBtn 0.3s ease-in-out;
           animation: toggleBtn 0.3s ease-in-out;
 }
@@ -15835,7 +15836,7 @@ be a descendant of the grid when it is being dragged.
 
 .toggle-flip input[type="checkbox"] + .flip-indecator:after {
   content: attr(data-toggle-on);
-  background-color: #009688;
+  background-color: #493D73;
   color: #fff;
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);

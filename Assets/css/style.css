@@ -8,3 +8,11 @@
     width: 50px; 
     position: absolute;
 }
+
+.headerRegister{
+    background-color: #493D73;
+}
+
+.notBlock{
+    display: none;
+}

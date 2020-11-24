@@ -2,6 +2,7 @@
 headerAdmin($data);
 getModal('modalRoles', $data);
 ?>
+<div id="contentAjax"></div>
 <main class="app-content">
     <div class="app-title">
         <div>
@@ -9,7 +10,8 @@ getModal('modalRoles', $data);
                 <i class="fas fa-user-tag"></i> <?= $data['page_title'] ?><span> &nbsp;&nbsp; | &nbsp;&nbsp; </span>
                 <button class="btn btn-primary" type="button" onclick="openModal();"><i class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;Crear</button>
             </h1>
-            <p>Administra los roles del sistema a tu gusto</p>
+            <p>&nbsp;</p>
+            <p>Adapta los roles del sistema a tus necesidades.</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
