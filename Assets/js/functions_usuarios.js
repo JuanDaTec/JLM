@@ -21,10 +21,46 @@ document.addEventListener('DOMContentLoaded', function () {
             { "data": "status" },
             { "data": "options" }
         ],
+        'dom': 'lBfrtip',
+        'buttons': [
+            {
+                "extend": "copyHtml5",
+                "text": "<i class='far fa-copy'></i>",
+                "titleAttr":"Copiar elementos",
+                "className": "btn btn-secondary",
+                "exportOptions": { 
+                    "columns": [ 0, 1, 2, 3, 4, 5] 
+                }
+            },{
+                "extend": "excelHtml5",
+                "text": "<i class='fas fa-file-excel'></i>",
+                "titleAttr":"Exportar a Excel",
+                "className": "btn btn-success",
+                "exportOptions": { 
+                    "columns": [ 0, 1, 2, 3, 4, 5] 
+                } 
+            },{
+                "extend": "pdfHtml5",
+                "text": "<i class='fas fa-file-pdf'></i>",
+                "titleAttr":"Exportar a PDF",
+                "className": "btn btn-danger",
+                "exportOptions": { 
+                    "columns": [ 0, 1, 2, 3, 4, 5] 
+                }
+            },{
+                "extend": "csvHtml5",
+                "text": "<i class='fas fa-file-csv'></i>",
+                "titleAttr":"Exportar a CSV",
+                "className": "btn btn-info",
+                "exportOptions": { 
+                    "columns": [ 0, 1, 2, 3, 4, 5] 
+                }
+            }
+        ],
         "resonsieve": "true",
         "bDestroy": true,
         "iDisplayLength": 5,
-        "order": [[0, "desc"]]
+        "order": [[0, "desc"]],
     });
 
     var formUsuario = document.querySelector("#formUsuario");
@@ -43,6 +79,16 @@ document.addEventListener('DOMContentLoaded', function () {
             return false;
         }
 
+        
+        let elementsValid = document.getElementsByClassName("valid");
+        for (let i = 0; i < elementsValid.length; i++) { 
+            if(elementsValid[i].classList.contains('is-invalid')) { 
+                swal("¡Atención!", "Por favor verifique los campos en rojo." , "error");
+                return false;
+            } 
+        } 
+
+
         var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
         var ajaxUrl = base_url + '/Usuarios/setUsuario';
         var formData = new FormData(formUsuario);
@@ -54,9 +100,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (objData.status) {
                     $('#modalFormUsuario').modal("hide");
                     formUsuario.reset();
-                    swal("¡Usuario creado correctamente!", objData.msg, "success");
-                    tableUsuarios.api().ajax.reload(function () {
-                    });
+                    swal("¡Correcto!", objData.msg, "success");
+                    tableUsuarios.api().ajax.reload();
                 } else {
                     swal("¡Oops!", objData.msg, "error");
                 }
@@ -71,9 +116,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 window.addEventListener('load', function () {
     setTimeout(() => {
-    fntRolesUsuario();
-    fntViewUsuario();
-}, 500);
+        fntRolesUsuario();
+        /*fntViewUsuario();
+        fntEditUsuario();
+        fntDelUsuario();*/
+    }, 500);
 }, false);
 
 function fntRolesUsuario() {
@@ -92,41 +139,116 @@ function fntRolesUsuario() {
 
 }
 
-function fntViewUsuario() {
-    var btnViewUsuario = document.querySelectorAll(".btnViewUsuario");
-    btnViewUsuario.forEach(function (btnViewUsuario) {
-        btnViewUsuario.addEventListener('click', function() {
-            var idpersona = this.getAttribute("us");
+function fntViewUsuario(idpersona) {
+    var idpersona = idpersona;
+    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    var ajaxUrl = base_url + '/Usuarios/getUsuario/' + idpersona;
+    request.open("GET", ajaxUrl, true);
+    request.send();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var objData = JSON.parse(request.responseText);
+
+            if (objData.status) {
+                var estadoUsuario = objData.data.status == 1 ?
+                    '<span class="badge badge-success">Habilitado</span>' :
+                    '<span class="badge badge-danger">Deshabilitado</span>';
+
+                document.querySelector("#celIdentificacion").innerHTML = objData.data.identificacion;
+                document.querySelector("#celNombre").innerHTML = objData.data.nombres;
+                document.querySelector("#celApellido").innerHTML = objData.data.apellidos;
+                document.querySelector("#celTelefono").innerHTML = objData.data.telefono;
+                document.querySelector("#celEmail").innerHTML = objData.data.email_user;
+                document.querySelector("#celTipoUsuario").innerHTML = objData.data.nombrerol;
+                document.querySelector("#celEstado").innerHTML = estadoUsuario;
+                document.querySelector("#celFechaRegistro").innerHTML = objData.data.fechaRegistro;
+                $('#modalViewUser').modal('show');
+            } else {
+                swal("Error", objData.msg, "error");
+            }
+        }
+    }
+}
+
+function fntEditUsuario(idpersona) {
+    document.querySelector('#titleModal').innerHTML = "Actualizar Usuario";
+    document.querySelector('#btnText').innerHTML = "Actualizar";
+
+    var idpersona = idpersona;
+    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    var ajaxUrl = base_url + '/Usuarios/getUsuario/' + idpersona;
+    request.open("GET", ajaxUrl, true);
+    request.send();
+    request.onreadystatechange = function () {
+
+        if (request.readyState == 4 && request.status == 200) {
+            var objData = JSON.parse(request.responseText);
+
+            if (objData.status) {
+                document.querySelector("#idUsuario").value = objData.data.idpersona;
+                document.querySelector("#txtIdentificacion").value = objData.data.identificacion;
+                document.querySelector("#txtNombre").value = objData.data.nombres;
+                document.querySelector("#txtApellido").value = objData.data.apellidos;
+                document.querySelector("#txtTelefono").value = objData.data.telefono;
+                document.querySelector("#txtEmail").value = objData.data.email_user;
+                document.querySelector("#listRolid").value = objData.data.idrol;
+                $('#listRolid').selectpicker('render');
+
+                if (objData.data.status == 1) {
+                    document.querySelector("#listStatus").value = 1;
+                } else {
+                    document.querySelector("#listStatus").value = 2;
+                }
+                $('#listStatus').selectpicker('render');
+            }
+        }
+
+        $('#modalFormUsuario').modal('show');
+    }
+}
+
+function fntDelUsuario(idpersona){
+
+    var idUsuario = idpersona;
+    swal({
+        title: "Eliminar usuario",
+        text: "¿Estas seguro de eliminar el usuario seleccionado?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Si, ¡Eliminar!",
+        cancelButtonText: "No, ¡Cancelar!",
+        closeOnConfirm: false,
+        closeOnCancel: true
+    }, function(isConfirm) {
+        
+        if (isConfirm) 
+        {
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            var ajaxUrl = base_url + '/Usuarios/getUsuario/' +idpersona;
-            request.open("GET", ajaxUrl, true);
-            request.send();
-            request.onreadystatechange = function () {
-                if (request.status == 200) {
+            var ajaxUrl = base_url+'/Usuarios/delUsuario';
+            var strData = "idUsuario="+idUsuario;
+            request.open("POST",ajaxUrl,true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send(strData);
+            request.onreadystatechange = function(){
+                if(request.readyState == 4 && request.status == 200){
                     var objData = JSON.parse(request.responseText);
-
-                    if (objData.status) {
-                        var estadoUsuario = objData.data.status == 1 ?
-                            '<span class="badge badge-success">Habilitado</span>' :
-                            '<span class="badge badge-danger">Inhabilitado</span>';
-
-                        document.querySelector("#celIdentificacion").innerHTML = objData.data.identificacion;
-                        document.querySelector("#celNombre").innerHTML = objData.data.nombres;
-                        document.querySelector("#celApellido").innerHTML = objData.data.apellidos;
-                        document.querySelector("#celTelefono").innerHTML = objData.data.telefono;
-                        document.querySelector("#celEmail").innerHTML = objData.data.email_user;
-                        document.querySelector("#celTipoUsuario").innerHTML = objData.data.nombrerol;
-                        document.querySelector("#celEstado").innerHTML = estadoUsuario;
-                        document.querySelector("#celFechaRegistro").innerHTML = objData.data.fechaRegistro;
-                        $('#modalViewUser').modal('show');
-                    } else {
-                        swal("Error", objData.msg, "error");
+                    if(objData.status)
+                    {
+                        swal("Eliminar!", objData.msg , "success");
+                        tableUsuarios.api().ajax.reload(function(){
+                            fntRolesUsuario();
+                            fntViewUsuario();
+                            fntEditUsuario();
+                            fntDelUsuario();
+                        });
+                    }else{
+                        swal("Atención!", objData.msg , "error");
                     }
                 }
             }
-        })
-    }
-    )
+        }
+
+    });
 
 }
 

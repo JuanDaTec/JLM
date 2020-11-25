@@ -12,7 +12,7 @@
     const DB_NAME = "s54kondnnt9xh1u9";
     const DB_USER = "pko1xn2l8f7qoldm";
     const DB_PASSWORD = "ougur9lptzcg5bgc";
-    const DB_CHARSET = "charset=utf8";
+    const DB_CHARSET = "utf8";
 
     //Separadores decimal y millar
     const SPD = ".";
