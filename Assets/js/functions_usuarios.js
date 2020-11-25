@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         "columns": [
             { "data": "idpersona" },
-            { "data": "identificacion" },
             { "data": "nombres" },
             { "data": "apellidos" },
             { "data": "email_user" },

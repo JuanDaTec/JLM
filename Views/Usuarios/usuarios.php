@@ -23,7 +23,6 @@ getModal('modalUsuarios', $data);
                             <thead>
                                 <tr>
                                     <th><strn>ID</th>
-                                    <th><strn>N° Cedula</th>
                                     <th><strn>Nombres</th>
                                     <th><strn>Apellidos</th>
                                     <th><strn>Email</th>
