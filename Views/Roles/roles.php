@@ -13,7 +13,7 @@ getModal('modalRoles', $data);
             <p>&nbsp;</p>
             <p>Adapta los roles del sistema a tus necesidades.</p>
         </div>
-            <img class="form_title_bread" src="<?= media(); ?>/images/logo_alt1.png" alt="User Image">
+        <img class="form_title_bread" src="<?= media(); ?>/images/logo_alt1.png" alt="User Image">
     </div>
     <div class="row">
         <div class="col-md-12">

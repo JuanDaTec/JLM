@@ -1,8 +1,4 @@
 @charset "UTF-8";
-/*!
- * Vali Admin
- * Author: Pratik Borsadiya
- * ================================*/
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,400i,700);
 @import url(https://fonts.googleapis.com/css?family=Niconne);
 /*!
@@ -3472,7 +3468,7 @@ input[type="button"].btn-block {
   padding: 8px 20px;
   clear: both;
   font-weight: 400;
-  color: #212529;
+  color: #322C40;
   text-align: inherit;
   white-space: nowrap;
   background-color: transparent;
@@ -3490,7 +3486,7 @@ input[type="button"].btn-block {
 }
 
 .dropdown-item:hover, .dropdown-item:focus {
-  color: #16181b;
+  color: #322C40;
   text-decoration: none;
   background-color: #f8f9fa;
 }
@@ -3498,7 +3494,7 @@ input[type="button"].btn-block {
 .dropdown-item.active, .dropdown-item:active {
   color: #FFF;
   text-decoration: none;
-  background-color: #009688;
+  background-color: #3A3259;
 }
 
 .dropdown-item.disabled, .dropdown-item:disabled {
@@ -10425,7 +10421,7 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #009688 !important;
+  color: #493D73!important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
