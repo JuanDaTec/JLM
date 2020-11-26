@@ -21,6 +21,8 @@
     width: 150px;
 }
 
+
+
 @media screen and (max-width: 600px) {
     .form_title_bread{
         display: none;
@@ -28,7 +30,7 @@
 }
 
 .form_title_login{
-    width: 400px;
+    width: 330px;
 }
 
 .login-content .login-box.flippedPass {
