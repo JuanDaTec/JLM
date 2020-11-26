@@ -29,7 +29,8 @@
 	height: 100%;
 	display: flex;
 	justify-content: center;
-	align-items: center;
+    align-items: flex-start;
+    padding: 100px;
 	background: rgba(254,254,255, .97);
 	z-index: 9999;
 	display: none;
@@ -46,15 +47,15 @@
 	height: 100%;
 	display: flex;
 	justify-content: center;
-    align-items: flex-start;
-    padding: 125px;
+    align-items: flex-end;
+    padding: 80px;
 	z-index: 9999;
 	display: none;
 }
 
 #divLoading2 img{
 	width: auto;
-	height: 80px;
+	height: 200px;
 }
 
 
@@ -65,7 +66,7 @@
 }
 
 .form_title_login{
-    width: 190px;
+    width: 330px;
 }
 
 .login-content .login-box.flippedPass {

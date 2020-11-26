@@ -21,7 +21,7 @@
     </section>
     <section class="login-content">
         <div class="logo">
-            <img class="form_title_login" src="<?= media(); ?>/images/logo_main.png">
+            <img class="form_title_login" src="<?= media(); ?>/images/logo_alt1.png">
         </div>
         <div class="login-box">
             <div id="divLoading">
