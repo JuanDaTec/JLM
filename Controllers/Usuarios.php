@@ -2,6 +2,12 @@
     class Usuarios extends Controllers{
         public function __construct()
         {
+			session_start();
+			if(empty($_SESSION['login']))
+			{
+				header('Location: '.base_url().'/login');
+			}
+
             parent::__construct();
         }
 
@@ -9,7 +15,8 @@
         {
             $data['page_tag'] = "Usuarios | JLM";
             $data['page_title'] = "Usuarios";
-            $data['page_name'] = "usuarios";
+			$data['page_name'] = "usuarios";
+			$data['page_functions_js'] = "functions_usuarios.js";
             $this->views->getView($this,"usuarios",$data);
         }
 

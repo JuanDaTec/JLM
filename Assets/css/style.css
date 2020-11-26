@@ -26,3 +26,11 @@
         display: none;
     }
 }
+
+.form_title_login{
+    width: 400px;
+}
+
+.login-content .login-box.flippedPass {
+    min-height: 330px;
+  }

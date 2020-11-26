@@ -3,7 +3,8 @@
   <div class="app-title">
     <div>
       <h1><i class="fas fa-circle-notch"></i> <?= $data['page_title'] ?></h1>
-      <p>Bienvenido a JLM WorkShop</p>
+      <br> 
+      <p>Hola <strong><?= $_SESSION['userData']['nombres'];?>.</strong> ¡Bienvenido a JLM WorkShop!</p>
     </div>
     <img class="form_title_bread" src="<?= media(); ?>/images/logo_alt1.png" alt="User Image">
   </div>
@@ -11,8 +12,9 @@
     <div class="col-md-12">
       <div class="tile">
         <div class="tile-body">Espacio de trabajo</div>
+        <?php dep($_SESSION['userData']);?>
       </div>
     </div>
   </div>
 </main>
-<?php footerAdmin($data); ?>
+<?php footerAdmin($data); ?><strong></strong>
