@@ -1,4 +1,18 @@
 <?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+
+use PHPMailer\PHPMailer\Exception;
+
+
+
+require 'Exception.php';
+
+require 'PHPMailer.php';
+
+require 'SMTP.php';
+
+
     //Retorna la url del proyecto
     function base_url()
     {
@@ -37,6 +51,36 @@
         $view_modal = "Views/Template/Modals/{$nameModal}.php";
         require_once $view_modal;
     }
+
+    //Envio de correos
+    function sendEmail($data,$template){
+        
+        $mail = new PHPMailer(true);
+        $mail->SMTPDebug = 0;
+        $mail->isSMTP();
+        $mail->Host  = 'smtp.gmail.com'; //este es tu servidor de correo, ej: gmail, hotmail, tu servidror, etc.
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'jlmworkshop2020@gmail.com'; //esta es tu cuenta a usar
+        $mail->Password   = 'jlm2020*'; //este es el password de tu cuenta
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = "587";
+        $mail->setFrom('jlmworkshop2020@gmail.com', 'JLM WorkShop');
+        $emailDestino = $data['email'];
+        $mail->addAddress($emailDestino);
+        $asunto = $data['asunto'];
+        $mail->isHTML(true);
+        $mail->Subject = $asunto;
+        ob_start();
+        require_once("Views/Template/Email/".$template.".php");
+        $mensaje = ob_get_clean();
+        $mail->Body = $mensaje;
+        if($mail->send()){
+            return true;
+        }else{
+            return false;
+        }
+
+}
 
     //Elimina el exceso de espacios entre palabras
     function strClean($strCadena){
@@ -104,5 +148,3 @@
         $cantidad = number_format($cantidad,2,SPD,SPM);
         return $cantidad;
     }
-
-?>

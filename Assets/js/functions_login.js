@@ -91,11 +91,73 @@ document.addEventListener('DOMContentLoaded', function () {
           } else {
             swal("Lo sentimos", "Error en el proceso", "error");
           }
+
+          return false;
         }
 
       }
     }
   }
+
+  if(document.querySelector("#formCambiarPass")){
+		let formCambiarPass = document.querySelector("#formCambiarPass");
+		formCambiarPass.onsubmit = function(e) {
+			e.preventDefault();
+
+			let strPassword = document.querySelector('#txtPassword').value;
+			let strPasswordConfirm = document.querySelector('#txtPasswordConfirm').value;
+			let idUsuario = document.querySelector('#idUsuario').value;
+
+			if(strPassword == "" || strPasswordConfirm == ""){
+				swal("Oye...", "Por favor escribe la nueva contraseña." , "error");
+				return false;
+			}else{
+				if(strPassword.length < 5 ){
+					swal("¡Atención!", "La contraseña debe contener un mínimo de 5 caracteres." , "info");
+					return false;
+				}
+				if(strPassword != strPasswordConfirm){
+					swal("¡Atención!", "Las contraseñas no coinciden. Por favor verifica nuevamente." , "error");
+					return false;
+				}
+
+				var request = (window.XMLHttpRequest) ? 
+							new XMLHttpRequest() : 
+							new ActiveXObject('Microsoft.XMLHTTP');
+				var ajaxUrl = base_url+'/Login/setPassword'; 
+				var formData = new FormData(formCambiarPass);
+				request.open("POST",ajaxUrl,true);
+				request.send(formData);
+				request.onreadystatechange = function(){
+					if(request.readyState != 4) return;
+          if(request.status == 200){
+            var objData = JSON.parse(request.responseText);
+						if(objData.status)
+						{
+							swal({
+								title: "",
+								text: objData.msg,
+								type: "success",
+								confirmButtonText: "Iniciar sesión",
+								closeOnConfirm: false,
+							}, function(isConfirm) {
+								if (isConfirm) {
+									window.location = base_url+'/login';
+								}
+							});
+						}else{
+							swal("Atención",objData.msg, "error");
+						}
+          }else{
+            swal("Atención","Error en el proceso", "error");
+          }
+          
+				}
+			}
+		}
+	}
+
+
 
 
 }, false);

@@ -235,12 +235,7 @@ function fntDelUsuario(idpersona){
                     if(objData.status)
                     {
                         swal("Eliminar!", objData.msg , "success");
-                        tableUsuarios.api().ajax.reload(function(){
-                            fntRolesUsuario();
-                            fntViewUsuario();
-                            fntEditUsuario();
-                            fntDelUsuario();
-                        });
+                        tableUsuarios.api().ajax.reload();
                     }else{
                         swal("Atención!", objData.msg , "error");
                     }
