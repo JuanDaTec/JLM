@@ -4,7 +4,8 @@ $('.login-content [data-toggle="flip"]').click(function () {
   return false;
 });
 
-
+var divLoading = document.querySelector("#divLoading");
+var divLoading2 = document.querySelector("#divLoading2");
 document.addEventListener('DOMContentLoaded', function () {
 
   if (document.querySelector("#formLogin")) {
@@ -21,6 +22,8 @@ document.addEventListener('DOMContentLoaded', function () {
         swal("Error", "Escribe tu e-mail y tu contraseña.", "error");
         return false;
       } else {
+        divLoading.style.display = "flex";
+        divLoading2.style.display = "flex";
         var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
         var ajaxUrl = base_url + '/Login/loginUser';
         var formData = new FormData(formLogin);
@@ -41,6 +44,8 @@ document.addEventListener('DOMContentLoaded', function () {
           } else {
             swal("Atención", "Error en el proceso", "error");
           }
+          divLoading.style.display = "none";
+          divLoading2.style.display = "none";
 
           return false;
 

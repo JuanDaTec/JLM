@@ -21,9 +21,19 @@
     </section>
     <section class="login-content">
         <div class="logo">
-            <img class="form_title_login" src="<?= media(); ?>/images/logo_alt1.png">
+            <img class="form_title_login" src="<?= media(); ?>/images/logo_main.png">
         </div>
         <div class="login-box">
+            <div id="divLoading">
+                <div>
+                    <img src="<?= media(); ?>/images/loading.svg" alt="Loading">
+                </div>
+            </div>
+            <div id="divLoading2">
+                <div>
+                    <img src="<?= media(); ?>/images/start_session.png" alt="Loading">
+                </div>
+            </div>
             <form class="login-form" action="" name="formLogin" id="formLogin">
                 <h3 class="text-center"><i class="fa fa-lg fa-fw fa-user"></i></h3>
                 <h3 class="login-head">¡Bienvenido!</h3>
@@ -45,8 +55,9 @@
                     <button type="submit" class="btn btn-primary btn-block">INICIAR SESIÓN</button>
                 </div>
             </form>
+
             <form id="formRecetPass" id="formRecetPass" class="forget-form" action="">
-            <h5 class="text-center"><i class="fa fa-lg fa-fw fa-lock"></i></h5>
+                <h5 class="text-center"><i class="fa fa-lg fa-fw fa-lock"></i></h5>
                 <h5 class="login-head">¿Olvidaste tu contraseña?</h5>
                 <div class="form-group">
                     <label class="control-label">Correo electrónico</label>
@@ -70,7 +81,7 @@
     <script src="<?= media(); ?>/js/bootstrap.min.js"></script>
     <script src="<?= media(); ?>/js/main.js"></script>
     <script src="<?= media(); ?>/js/fontawesome.js"></script>
-    <script type="text/javascript" src="<?= media();?>/js/plugins/sweetalert.min.js"></script>
+    <script type="text/javascript" src="<?= media(); ?>/js/plugins/sweetalert.min.js"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="<?= media(); ?>/js/plugins/pace.min.js"></script>
     <script src="<?= media(); ?>/js/<?= $data['page_functions_js']; ?>"></script>
