@@ -55,7 +55,6 @@
                     <button type="submit" class="btn btn-primary btn-block">INICIAR SESIÓN</button>
                 </div>
             </form>
-
             <form id="formRecetPass" id="formRecetPass" class="forget-form" action="">
                 <h5 class="text-center"><i class="fa fa-lg fa-fw fa-lock"></i></h5>
                 <h5 class="login-head">¿Olvidaste tu contraseña?</h5>

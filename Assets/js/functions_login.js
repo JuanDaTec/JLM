@@ -6,6 +6,7 @@ $('.login-content [data-toggle="flip"]').click(function () {
 
 var divLoading = document.querySelector("#divLoading");
 var divLoading2 = document.querySelector("#divLoading2");
+var divLoadingReset = document.querySelector("#divLoadingReset");
 document.addEventListener('DOMContentLoaded', function () {
 
   if (document.querySelector("#formLogin")) {

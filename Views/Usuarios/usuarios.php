@@ -1,13 +1,16 @@
 <?php
-headerAdmin($data);
-getModal('modalUsuarios', $data);
+    headerAdmin($data);
+    getModal('modalUsuarios', $data);
 ?>
 <main class="app-content">
     <div class="app-title">
         <div>
             <h1>
-                <i class="fas fa-users"></i> <?= $data['page_title'] ?><span> &nbsp;&nbsp; | &nbsp;&nbsp; </span>
+                <i class="fas fa-users"></i> <?= $data['page_title'] ?>
+                <?php if($_SESSION['permisosMod']['w']){ ?>
+                <span> &nbsp;&nbsp; | &nbsp;&nbsp; </span>
                 <button class="btn btn-primary" type="button" onclick="openModal();"><i class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;Crear</button>
+                <?php } ?>   
             </h1>
             <p>&nbsp;</p>
             <p>Administra los usuarios que se encuentran en el sistema.</p>

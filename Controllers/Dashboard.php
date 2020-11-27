@@ -8,7 +8,11 @@
 			if(empty($_SESSION['login']))
 			{
 				header('Location: '.base_url().'/login');
-			}
+            }
+
+            getPermisos(1);
+            
+
 
         }
 
@@ -20,7 +24,6 @@
             $data['page_name'] = "dashboard";
             $this->views->getView($this,"dashboard",$data);
         }
-
 
     }
 ?>

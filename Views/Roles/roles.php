@@ -7,8 +7,11 @@ getModal('modalRoles', $data);
     <div class="app-title">
         <div>
             <h1>
-                <i class="fas fa-user-tag"></i> <?= $data['page_title'] ?><span> &nbsp;&nbsp; | &nbsp;&nbsp; </span>
-                <button class="btn btn-primary" type="button" onclick="openModal();"><i class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;Crear</button>
+                <i class="fas fa-user-tag"></i> <?= $data['page_title'] ?>
+                <?php if($_SESSION['permisosMod']['w']){ ?>
+                    <span> &nbsp;&nbsp; | &nbsp;&nbsp; </span>
+                    <button class="btn btn-primary" type="button" onclick="openModal();"><i class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;Crear</button>
+                <?php } ?>   
             </h1>
             <p>&nbsp;</p>
             <p>Adapta los roles del sistema a tus necesidades.</p>

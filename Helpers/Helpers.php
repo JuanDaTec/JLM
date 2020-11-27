@@ -80,7 +80,22 @@ require 'SMTP.php';
             return false;
         }
 
-}
+    }
+
+    function getPermisos(int $idmodulo){
+        require_once ("Models/PermisosModel.php");
+        $objPermisos = new PermisosModel();
+        $idrol = $_SESSION['userData']['idrol'];
+        $arrPermisos = $objPermisos->permisosModulo($idrol);
+        $permisos = '';
+        $permisosMod = '';
+        if(count($arrPermisos) > 0 ){
+            $permisos = $arrPermisos;
+            $permisosMod = isset($arrPermisos[$idmodulo]) ? $arrPermisos[$idmodulo] : "";
+        }
+        $_SESSION['permisos'] = $permisos;
+        $_SESSION['permisosMod'] = $permisosMod;
+    }
 
     //Elimina el exceso de espacios entre palabras
     function strClean($strCadena){
