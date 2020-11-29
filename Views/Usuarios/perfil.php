@@ -1,5 +1,6 @@
 <?php
-headerAdmin($data);
+    headerAdmin($data);
+    getModal('modalPerfil', $data);
 ?>
 <main class="app-content">
     <div class="row user">
@@ -16,7 +17,7 @@ headerAdmin($data);
             <div class="tile p-0">
                 <ul class="nav flex-column nav-tabs user-tabs">
                     <li class="nav-item"><a class="nav-link active" href="#user-timeline" data-toggle="tab">Datos personales</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#user-settings" data-toggle="tab">Otros datos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#user-settings" data-toggle="tab">Datos de facturación</a></li>
                 </ul>
             </div>
         </div>
@@ -27,7 +28,6 @@ headerAdmin($data);
                         <div class="post-media">
                             <div class="content">
                                 <h5>DATOS PERSONALES &nbsp;<button class="btn btn-sm btn-primary" type="button" onclick="openModalPerfil();"><i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp; Editar</button></h5>
-                                <p class="text-muted"><small>2 January at 9:30</small></p>
                             </div>
                         </div>
 
@@ -66,17 +66,17 @@ headerAdmin($data);
                             <div class="row mb-4">
                                 <div class="col-md-6">
                                     <label><strong>Identificación o NIT:</strong></label>
-                                    <input class="form-control" type="text" id="txtNit" name="txtNit" value="<?= $_SESSION['userData']['nit']; ?>">
+                                    <input class="form-control" type="text" id="txtNit" name="txtNit" value="<?= $_SESSION['userData']['ident_fact']; ?>">
                                 </div>
                                 <div class="col-md-6">
                                     <label><strong>Nombre o razón social:</strong></label>
-                                    <input class="form-control" type="text" id="txtNombreFiscal" name="txtNombreFiscal" value="<?= $_SESSION['userData']['nombrefiscal']; ?>">
+                                    <input class="form-control" type="text" id="txtNombreFact" name="txtNombreFact" value="<?= $_SESSION['userData']['nombre_fact']; ?>">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 mb-4">
                                     <label><strong>Dirección:</strong></label>
-                                    <input class="form-control" type="text" id="txtDirFiscal" name="txtDirFiscal" value="<?= $_SESSION['userData']['direccionfiscal']; ?>">
+                                    <input class="form-control" type="text" id="txtDirFact" name="txtDirFact" value="<?= $_SESSION['userData']['dir_fact']; ?>">
                                 </div>
                             </div>
                             <div class="row mb-10">

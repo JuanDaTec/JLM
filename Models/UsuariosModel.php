@@ -11,6 +11,9 @@
 		private $strToken;
 		private $intTipoId;
 		private $intStatus;
+		private $strNit;
+		private $strNomFact;
+		private $strDirFact;
 
         public function __construct()
         {
@@ -138,6 +141,52 @@
 			$request = $this->update($sql,$arrData);
 			return $request;
 		}
+
+		public function updatePerfil(int $idUsuario, string $identificacion, string $nombre, string $apellido, int $telefono, string $password){
+			$this->intIdUsuario = $idUsuario;
+			$this->strIdentificacion = $identificacion;
+			$this->strNombre = $nombre;
+			$this->strApellido = $apellido;
+			$this->intTelefono = $telefono;
+			$this->strPassword = $password;
+
+			if($this->strPassword != "")
+			{
+				$sql = "UPDATE persona SET identificacion=?, nombres=?, apellidos=?, telefono=?, password=? 
+						WHERE idpersona = $this->intIdUsuario ";
+				$arrData = array($this->strIdentificacion,
+								$this->strNombre,
+								$this->strApellido,
+								$this->intTelefono,
+								$this->strPassword);
+			}else{//no se actualiza la contraseña
+				$sql = "UPDATE persona SET identificacion=?, nombres=?, apellidos=?, telefono=? 
+						WHERE idpersona = $this->intIdUsuario ";
+				$arrData = array($this->strIdentificacion,
+								$this->strNombre,
+								$this->strApellido,
+								$this->intTelefono);
+			}
+			$request = $this->update($sql,$arrData);
+		    return $request;
+		}
+
+		public function updateDataFact(int $idUsuario, string $strNit, string $strNomFact, string $strDirFact){
+			$this->intIdUsuario = $idUsuario;
+			$this->strNit = $strNit;
+			$this->strNomFact = $strNomFact;
+			$this->strDirFact = $strDirFact;
+			$sql = "UPDATE persona SET ident_fact=?, nombre_fact=?, dir_fact=? 
+						WHERE idpersona = $this->intIdUsuario ";
+			$arrData = array($this->strNit,
+							$this->strNomFact,
+							$this->strDirFact);
+			$request = $this->update($sql,$arrData);
+		    return $request;
+		}
+
+
+
 
     }
 ?>

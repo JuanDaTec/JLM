@@ -1,4 +1,5 @@
 var tableUsuarios;
+var divLoadingOther = document.querySelector("#divLoadingOther");
 document.addEventListener('DOMContentLoaded', function () {
 
     tableUsuarios = $('#tableUsuarios').dataTable({
@@ -26,34 +27,34 @@ document.addEventListener('DOMContentLoaded', function () {
             {
                 "extend": "copyHtml5",
                 "text": "<i class='far fa-copy'></i>",
-                "titleAttr":"Copiar elementos",
+                "titleAttr": "Copiar elementos",
                 "className": "btn btn-secondary",
-                "exportOptions": { 
-                    "columns": [ 0, 1, 2, 3, 4, 5] 
+                "exportOptions": {
+                    "columns": [0, 1, 2, 3, 4, 5]
                 }
-            },{
+            }, {
                 "extend": "excelHtml5",
                 "text": "<i class='fas fa-file-excel'></i>",
-                "titleAttr":"Exportar a Excel",
+                "titleAttr": "Exportar a Excel",
                 "className": "btn btn-success",
-                "exportOptions": { 
-                    "columns": [ 0, 1, 2, 3, 4, 5] 
-                } 
-            },{
+                "exportOptions": {
+                    "columns": [0, 1, 2, 3, 4, 5]
+                }
+            }, {
                 "extend": "pdfHtml5",
                 "text": "<i class='fas fa-file-pdf'></i>",
-                "titleAttr":"Exportar a PDF",
+                "titleAttr": "Exportar a PDF",
                 "className": "btn btn-danger",
-                "exportOptions": { 
-                    "columns": [ 0, 1, 2, 3, 4, 5] 
+                "exportOptions": {
+                    "columns": [0, 1, 2, 3, 4, 5]
                 }
-            },{
+            }, {
                 "extend": "csvHtml5",
                 "text": "<i class='fas fa-file-csv'></i>",
-                "titleAttr":"Exportar a CSV",
+                "titleAttr": "Exportar a CSV",
                 "className": "btn btn-info",
-                "exportOptions": { 
-                    "columns": [ 0, 1, 2, 3, 4, 5] 
+                "exportOptions": {
+                    "columns": [0, 1, 2, 3, 4, 5]
                 }
             }
         ],
@@ -63,54 +64,171 @@ document.addEventListener('DOMContentLoaded', function () {
         "order": [[0, "desc"]],
     });
 
-    var formUsuario = document.querySelector("#formUsuario");
-    formUsuario.onsubmit = function (e) {
-        e.preventDefault();
-        var strIdentificacion = document.querySelector('#txtIdentificacion').value;
-        var strNombre = document.querySelector('#txtNombre').value;
-        var strApellido = document.querySelector('#txtApellido').value;
-        var strEmail = document.querySelector('#txtEmail').value;
-        var intTelefono = document.querySelector('#txtTelefono').value;
-        var intTipousuario = document.querySelector('#listRolid').value;
-        var strPassword = document.querySelector('#txtPassword').value;
+    if (document.querySelector("#formUsuario")) {
 
-        if (strIdentificacion == '' || strApellido == '' || strNombre == '' || strEmail == '' || intTelefono == '' || intTipousuario == '') {
-            swal("¡Atención!", "Todos los campos son obligatorios.", "error");
-            return false;
-        }
+        var formUsuario = document.querySelector("#formUsuario");
+        formUsuario.onsubmit = function (e) {
+            e.preventDefault();
+            var strIdentificacion = document.querySelector('#txtIdentificacion').value;
+            var strNombre = document.querySelector('#txtNombre').value;
+            var strApellido = document.querySelector('#txtApellido').value;
+            var strEmail = document.querySelector('#txtEmail').value;
+            var intTelefono = document.querySelector('#txtTelefono').value;
+            var intTipousuario = document.querySelector('#listRolid').value;
+            var strPassword = document.querySelector('#txtPassword').value;
 
-        
-        let elementsValid = document.getElementsByClassName("valid");
-        for (let i = 0; i < elementsValid.length; i++) { 
-            if(elementsValid[i].classList.contains('is-invalid')) { 
-                swal("¡Atención!", "Por favor verifique los campos en rojo." , "error");
+            if (strIdentificacion == '' || strApellido == '' || strNombre == '' || strEmail == '' || intTelefono == '' || intTipousuario == '') {
+                swal("¡Atención!", "Todos los campos son obligatorios.", "error");
                 return false;
-            } 
-        } 
+            }
 
 
-        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-        var ajaxUrl = base_url + '/Usuarios/setUsuario';
-        var formData = new FormData(formUsuario);
-        request.open("POST", ajaxUrl, true);
-        request.send(formData);
-        request.onreadystatechange = function () {
-            if (request.readyState == 4 && request.status == 200) {
-                var objData = JSON.parse(request.responseText);
-                if (objData.status) {
-                    $('#modalFormUsuario').modal("hide");
-                    formUsuario.reset();
-                    swal("¡Correcto!", objData.msg, "success");
-                    tableUsuarios.api().ajax.reload();
-                } else {
-                    swal("¡Oops!", objData.msg, "error");
+            let elementsValid = document.getElementsByClassName("valid");
+            for (let i = 0; i < elementsValid.length; i++) {
+                if (elementsValid[i].classList.contains('is-invalid')) {
+                    swal("¡Atención!", "Por favor verifique los campos en rojo.", "error");
+                    return false;
                 }
             }
+
+            divLoadingOther.style.display = "flex";
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl = base_url + '/Usuarios/setUsuario';
+            var formData = new FormData(formUsuario);
+            request.open("POST", ajaxUrl, true);
+            request.send(formData);
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var objData = JSON.parse(request.responseText);
+                    if (objData.status) {
+                        $('#modalFormUsuario').modal("hide");
+                        formUsuario.reset();
+                        swal("¡Correcto!", objData.msg, "success");
+                        tableUsuarios.api().ajax.reload();
+                    } else {
+                        swal("¡Oops!", objData.msg, "error");
+                    }
+                }
+                divLoadingOther.style.display = "none";
+                return false;
+            }
         }
-
-
-
     }
+    //Actualizar perfil de usuario
+    if (document.querySelector("#formPerfil")) {
+        var formPerfil = document.querySelector("#formPerfil");
+        formPerfil.onsubmit = function (e) {
+            e.preventDefault();
+            var strIdentificacion = document.querySelector('#txtIdentificacion').value;
+            var strNombre = document.querySelector('#txtNombre').value;
+            var strApellido = document.querySelector('#txtApellido').value;
+            var intTelefono = document.querySelector('#txtTelefono').value;
+            var strPassword = document.querySelector('#txtPassword').value;
+            var strPasswordConfirm = document.querySelector('#txtPasswordConfirm').value;
+
+            if (strIdentificacion == '' || strApellido == '' || strNombre == '' || intTelefono == '') {
+                swal("¡Atención!", "Todos los campos son obligatorios.", "error");
+                return false;
+            }
+
+            if (strPassword != "" || strPasswordConfirm != "") {
+                if (strPassword != strPasswordConfirm) {
+                    swal("Atención", "Las contraseñas no coinciden, verifica nuevamente.", "info");
+                    return false;
+                }
+                if (strPassword.length < 5) {
+                    swal("Atención", "La contraseña debe tener un mínimo de 5 caracteres.", "info");
+                    return false;
+                }
+            }
+
+            let elementsValid = document.getElementsByClassName("valid");
+            for (let i = 0; i < elementsValid.length; i++) {
+                if (elementsValid[i].classList.contains('is-invalid')) {
+                    swal("¡Atención!", "Por favor verifica los campos marcados en rojo.", "error");
+                    return false;
+                }
+            }
+            divLoadingOther.style.display = "flex";
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl = base_url + '/Usuarios/putPerfil';
+            var formData = new FormData(formPerfil);
+            request.open("POST", ajaxUrl, true);
+            request.send(formData);
+            request.onreadystatechange = function () {
+                if (request.readyState != 4) return;
+                if (request.status == 200) {
+                    var objData = JSON.parse(request.responseText);
+                    if (objData.status) {
+                        $('#modalFormPerfil').modal("hide");
+                        swal({
+                            title: "",
+                            text: objData.msg,
+                            type: "success",
+                            confirmButtonText: "¡Vale!",
+                            closeOnConfirm: false,
+                        }, function (isConfirm) {
+                            if (isConfirm) {
+                                location.reload();
+                            }
+                        });
+                    } else {
+                        swal("Error", objData.msg, "error");
+                    }
+                }
+                divLoadingOther.style.display = "none";
+                return false;
+            }
+        }
+    }
+    //Actualizar datos de facturación
+    if (document.querySelector("#formDataFact")) {
+        var formDataFact = document.querySelector("#formDataFact");
+        formDataFact.onsubmit = function (e) {
+            e.preventDefault();
+            var strNit = document.querySelector('#txtNit').value;
+            var strNombreFact = document.querySelector('#txtNombreFact').value;
+            var strDirFact = document.querySelector('#txtDirFact').value;
+
+            if (strNit == '' || strNombreFact == '' || strDirFact == '') {
+                swal("¡Atención!", "Todos los campos son obligatorios.", "error");
+                return false;
+            }
+
+            divLoadingOther.style.display = "flex";
+
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl = base_url + '/Usuarios/putDFact';
+            var formData = new FormData(formDataFact);
+            request.open("POST", ajaxUrl, true);
+            request.send(formData);
+            request.onreadystatechange = function () {
+                if (request.readyState != 4) return;
+                if (request.status == 200) {
+                    var objData = JSON.parse(request.responseText);
+                    if (objData.status) {
+                        $('#modalFormPerfil').modal("hide");
+                        swal({
+                            title: "",
+                            text: objData.msg,
+                            type: "success",
+                            confirmButtonText: "¡Vale!",
+                            closeOnConfirm: false,
+                        }, function (isConfirm) {
+                            if (isConfirm) {
+                                location.reload();
+                            }
+                        });
+                    } else {
+                        swal("Error", objData.msg, "error");
+                    }
+                }
+                divLoadingOther.style.display = "none";
+                return false;
+            }
+        }
+    }
+
 }, false);
 
 
@@ -123,20 +241,22 @@ window.addEventListener('load', function () {
     }, 500);
 }, false);
 
-function fntRolesUsuario() {
-    var ajaxUrl = base_url + '/Roles/getSelectRoles';
-    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    request.open("GET", ajaxUrl, true);
-    request.send();
 
-    request.onreadystatechange = function () {
-        if (request.readyState == 4 && request.status == 200) {
-            document.querySelector('#listRolid').innerHTML = request.responseText;
-            //document.querySelector('#listRolid').value = 2;
-            $('#listRolid').selectpicker('render');
+function fntRolesUsuario() {
+    if (document.querySelector('#listRolid')) {
+        var ajaxUrl = base_url + '/Roles/getSelectRoles';
+        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        request.open("GET", ajaxUrl, true);
+        request.send();
+
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+                document.querySelector('#listRolid').innerHTML = request.responseText;
+                //document.querySelector('#listRolid').value = 2;
+                $('#listRolid').selectpicker('render');
+            }
         }
     }
-
 }
 
 function fntViewUsuario(idpersona) {
@@ -207,7 +327,7 @@ function fntEditUsuario(idpersona) {
     }
 }
 
-function fntDelUsuario(idpersona){
+function fntDelUsuario(idpersona) {
 
     var idUsuario = idpersona;
     swal({
@@ -219,25 +339,23 @@ function fntDelUsuario(idpersona){
         cancelButtonText: "No, ¡Cancelar!",
         closeOnConfirm: false,
         closeOnCancel: true
-    }, function(isConfirm) {
-        
-        if (isConfirm) 
-        {
+    }, function (isConfirm) {
+
+        if (isConfirm) {
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            var ajaxUrl = base_url+'/Usuarios/delUsuario';
-            var strData = "idUsuario="+idUsuario;
-            request.open("POST",ajaxUrl,true);
+            var ajaxUrl = base_url + '/Usuarios/delUsuario';
+            var strData = "idUsuario=" + idUsuario;
+            request.open("POST", ajaxUrl, true);
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             request.send(strData);
-            request.onreadystatechange = function(){
-                if(request.readyState == 4 && request.status == 200){
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
                     var objData = JSON.parse(request.responseText);
-                    if(objData.status)
-                    {
-                        swal("Eliminar!", objData.msg , "success");
+                    if (objData.status) {
+                        swal("Eliminar!", objData.msg, "success");
                         tableUsuarios.api().ajax.reload();
-                    }else{
-                        swal("Atención!", objData.msg , "error");
+                    } else {
+                        swal("Atención!", objData.msg, "error");
                     }
                 }
             }
@@ -253,4 +371,8 @@ function openModal() {
     document.querySelector('#titleModal').innerHTML = "Nuevo Usuario";
     document.querySelector("#formUsuario").reset();
     $('#modalFormUsuario').modal('show');
+}
+
+function openModalPerfil() {
+    $('#modalFormPerfil').modal('show');
 }

@@ -23,6 +23,25 @@
 
 /*Estilos login*/
 
+
+#divLoadingOther{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	background: rgba(254,254,255, .65);
+	z-index: 9999;
+	display: none;
+}
+
+#divLoadingOther img{
+	width: 50px;
+	height: 50px;
+}
+
 #divLoading{
 	position: fixed;
 	top: 0;
@@ -72,4 +91,10 @@
 
 .login-content .login-box.flippedPass {
     min-height: 330px;
+  }
+
+  .required{
+	  color: red;
+	  font-size: 13pt;
+	  font-weight: bold;
   }

@@ -1,5 +1,5 @@
 var tableRoles;
-
+var divLoadingOther = document.querySelector("#divLoadingOther");
 document.addEventListener('DOMContentLoaded', function () {
     tableRoles = $('#tableRoles').dataTable({
         "aProcessing": true,
@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
             swal("Atencion", "Todos los campos son obligatorios.", "error")
             return false;
         }
+        divLoadingOther.style.display = "flex";
         var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
         var ajaxUrl = base_url + '/Roles/setRol';
         var formData = new FormData(formRol);
@@ -57,6 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     swal("Error", objData.msg, "error");
                 }
             }
+            divLoadingOther.style.display = "none";
+            return false;
         }
 
     }

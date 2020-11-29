@@ -114,6 +114,7 @@ class Roles extends Controllers
         } else {
             $arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
         }
+        sleep(1);
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
