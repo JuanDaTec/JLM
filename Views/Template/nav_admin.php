@@ -53,14 +53,14 @@
                     <ul class="treeview-menu">
                         <?php if (!empty($_SESSION['permisos'][4]['r'])){?>
                             <li>
-                            <a class="treeview-item" href="<?= base_url(); ?>/usuarios">
+                            <a class="treeview-item" href="<?= base_url(); ?>/productos">
                                 <i class="icon fa fa-caret-right"></i> Productos
                             </a>
                             </li>
                         <?php } ?>
                         <?php if (!empty($_SESSION['permisos'][6]['r'])){?>
                             <li>
-                                <a class="treeview-item" href="<?= base_url(); ?>/roles" rel="noopener">
+                                <a class="treeview-item" href="<?= base_url(); ?>/categorias" rel="noopener">
                                     <i class="icon fa fa-caret-right"></i> Categorias
                                 </a>
                             </li>
