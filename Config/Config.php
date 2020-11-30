@@ -8,10 +8,10 @@
 
 
     //Datos de conexión a Bases de datos
-    const DB_HOST = "klbcedmmqp7w17ik.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
-    const DB_NAME = "t2ka4jcbzt1j2wf7";
-    const DB_USER = "h72cssx3lil2ibmd";
-    const DB_PASSWORD = "qylxe4io6zewpuom";
+    const DB_HOST = "rnr56s6e2uk326pj.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
+    const DB_NAME = "n5xrbu8lg6tkt3uv";
+    const DB_USER = "gqp0fet0ijr0t6k4";
+    const DB_PASSWORD = "tuq2kdqmuv5umld7";
     const DB_CHARSET = "utf8";
 
     //Separadores decimal y millar
