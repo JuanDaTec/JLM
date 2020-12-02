@@ -13,7 +13,7 @@ getModal('modalCategorias', $data);
                 <?php } ?>
             </h1>
             <p>&nbsp;</p>
-            <p>Administra las categorias de los productos de JLM.</p>
+            <p>Administra las categorías de los productos de JLM.</p>
         </div>
         <img class="form_title_bread" src="<?= media(); ?>/images/logo_alt1.png" alt="User Image">
     </div>
