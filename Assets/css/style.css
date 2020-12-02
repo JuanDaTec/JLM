@@ -13,12 +13,12 @@
     background-color: #493D73;
 }
 
-.notBlock{
-    display: none;
-}
-
 .form_title_bread{
     width: 150px;
+}
+
+.textcenter{
+	text-align: center;
 }
 
 /*Estilos login*/

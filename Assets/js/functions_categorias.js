@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 "titleAttr":"Copiar elementos",
                 "className": "btn btn-secondary",
                 "exportOptions": {
-                    "columns": [0, 1, 2, 3, 4, 5]
+                    "columns": [0, 1, 2, 3, 4]
                 }
                 
             },{
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 "titleAttr":"Exportar a Excel",
                 "className": "btn btn-success",
                 "exportOptions": {
-                    "columns": [0, 1, 2, 3, 4, 5]
+                    "columns": [0, 1, 2, 3, 4]
                 }
             },{
                 "extend": "pdfHtml5",
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 "titleAttr":"Exportar a PDF",
                 "className": "btn btn-danger",
                 "exportOptions": {
-                    "columns": [0, 1, 2, 3, 4, 5]
+                    "columns": [0, 1, 2, 3, 4]
                 }
             },{
                 "extend": "csvHtml5",
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 "titleAttr":"Exportar a CSV",
                 "className": "btn btn-info",
                 "exportOptions": {
-                    "columns": [0, 1, 2, 3, 4, 5]
+                    "columns": [0, 1, 2, 3, 4]
                 }
             }
         ],
