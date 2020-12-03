@@ -20,7 +20,7 @@
     const SPM = ".";
 
     //Simbolo de la moneda
-    const SMONEY = "COP ";
+    const SMONEY = "COP $";
 
     //Datos envio de correo
 	const NOMBRE_REMITENTE = "JLM WorkShop";

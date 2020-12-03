@@ -21,6 +21,14 @@
 	text-align: center;
 }
 
+.textright{
+	text-align: right;
+}
+
+.bootstrap-select > .dropdown-toggle{
+	border: 1px solid #CCC;
+}
+
 /*Estilos login*/
 
 

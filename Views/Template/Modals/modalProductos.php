@@ -19,17 +19,17 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <label class="control-label">Nombre del producto<span class="required">*</span></label>
+                                        <label class="control-label"><strong>Nombre del producto</strong><span class="required">*</span></label>
                                         <input class="form-control" id="txtNombre" name="txtNombre" type="text"  required="">
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label">Descripción del producto</label>
+                                        <label class="control-label"><strong>Descripción del producto</strong></label>
                                         <textarea class="form-control" id="txtDescripcion" name="txtDescripcion"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="control-label">Código<span class="required">*</span></label>
+                                        <label class="control-label"><strong>Código</strong><span class="required">*</span></label>
                                         <input class="form-control" id="txtCodigo" name="txtCodigo" type="text" placeholder="Código de barras" required="">
                                         <br>
                                         <div id="divBarCode" class="notBlock textcenter">
@@ -41,11 +41,11 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label class="control-label">Precio <span class="required">*</span></label>
+                                            <label class="control-label"><strong>Precio</strong> <span class="required">*</span></label>
                                             <input class="form-control" id="txtPrecio" name="txtPrecio" type="text" required="">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="control-label">Stock <span class="required">*</span></label>
+                                            <label class="control-label"><strong>Stock</strong> <span class="required">*</span></label>
                                             <input class="form-control" id="txtStock" name="txtStock" type="text" required="">
                                         </div>
                                     </div>
@@ -53,24 +53,25 @@
 
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label for="listCategoria">Categoría <span class="required">*</span></label>
+                                            <label for="listCategoria"><strong>Categoría</strong> <span class="required">*</span></label>
                                             <select class="form-control" data-live-search="true" id="listCategoria" name="listCategoria" required=""></select>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="listStatus">Estado <span class="required">*</span></label>
+                                            <label for="listStatus"><strong>Estado</strong> <span class="required">*</span></label>
                                             <select class="form-control selectpicker" id="listStatus" name="listStatus" required="">
                                                 <option value="1">Habilitado</option>
                                                 <option value="2">Deshabilitado</option>
                                             </select>
                                         </div>
                                     </div>
+                                    <br><br>
 
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <button id="btnActionForm" class="btn btn-primary btn-lg btn-block" type="submit"><i class="fa fa-fw fa-lg fas fa-save"></i><span id="btnText">Guardar</span></button>&nbsp;&nbsp;&nbsp;
+                                            <button id="btnActionForm" class="btn btn-primary btn-block" type="submit"><i class="fa fa-fw fa-lg fas fa-save"></i><span id="btnText">Guardar</span></button>&nbsp;&nbsp;&nbsp;
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <button class="btn btn-secondary btn-lg btn-block" type="button" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cerrar</button>
+                                            <button class="btn btn-secondary btn-block" type="button" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cerrar</button>
                                         </div>
                                     </div>
                                 </div>
