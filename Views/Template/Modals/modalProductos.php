@@ -20,7 +20,7 @@
                                 <div class="col-md-8">
                                     <div class="form-group">
                                         <label class="control-label"><strong>Nombre del producto</strong><span class="required">*</span></label>
-                                        <input class="form-control" id="txtNombre" name="txtNombre" type="text"  required="">
+                                        <input class="form-control" id="txtNombre" name="txtNombre" type="text" required="">
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label"><strong>Descripción del producto</strong></label>
@@ -79,7 +79,34 @@
                     </div>
 
                     <div class="tile-footer">
+                        <div class="form-group col-md-12">
+                            <div id="containerGallery">
+                                <span>Agregar imágenes del producto (440 x 545)&nbsp;&nbsp;</span>
+                                <button class="btnAddImage btn btn-info btn-sm" type="button">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <hr>
+                            <div id="containerImages">
+                                <!-- <div id="div24">
+                             <div class="prevImage">
+                                 <img src="<?= media(); ?>/images/uploads/producto1.jpg">
+                             </div>
+                             <input type="file" name="foto" id="img1" class="inputUploadfile">
+                             <label for="img1" class="btnUploadfile"><i class="fas fa-upload "></i></label>
+                             <button class="btnDeleteImage" type="button" onclick="fntDelItem('div24')"><i class="fas fa-trash-alt"></i></button>
+                         </div>
+                         <div id="div24">
+                             <div class="prevImage">
+                                 <img class="loading" src="<?= media(); ?>/images/loading.svg">
+                             </div>
+                             <input type="file" name="foto" id="img1" class="inputUploadfile">
+                             <label for="img1" class="btnUploadfile"><i class="fas fa-upload "></i></label>
+                             <button class="btnDeleteImage" type="button" onclick="fntDelItem('div24')"><i class="fas fa-trash-alt"></i></button>
+                         </div> -->
 
+                            </div>
+                        </div>
 
                     </div>
                     </form>
@@ -91,8 +118,8 @@
 </div>
 
 <!-- Modal del usuarios-->
-<div class="modal fade" id="modalViewCategoria" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="modalViewProducto" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header headerRegister">
                 <h5><img class="form_title" src="<?= media(); ?>/images/form_title.png" alt="User Image"></h5>
@@ -102,29 +129,41 @@
             </div>
             <div class="modal-body">
                 <div class="tile">
-                    <h3 class="tile-title" id="titleModal">Datos de la categoría</h3>
+                    <h3 class="tile-title" id="titleModal">Datos del producto</h3>
                     <div class="tile-body">
                         <table class="table table-bordered">
                             <tbody>
                                 <tr>
-                                    <td><strong>ID:</strong></td>
-                                    <td id="celId"></td>
+                                    <td><strong>Código:</strong></td>
+                                    <td id="celCodigo"></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Nombres:</strong></td>
+                                    <td><strong>Nombre:</strong></td>
                                     <td id="celNombre"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Precio:</strong></td>
+                                    <td id="celPrecio"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Stock:</strong></td>
+                                    <td id="celStock"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Categoría:</strong></td>
+                                    <td id="celCategoria"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Status:</strong></td>
+                                    <td id="celStatus"></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Descripción:</strong></td>
                                     <td id="celDescripcion"></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Estado:</strong></td>
-                                    <td id="celEstado"></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Foto:</strong></td>
-                                    <td id="imgCategoria"></td>
+                                    <td><strong>Galería del producto:</strong></td>
+                                    <td id="celFotos"></td>
                                 </tr>
                             </tbody>
                         </table>

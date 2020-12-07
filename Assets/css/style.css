@@ -180,3 +180,60 @@
 	margin: auto;
 }
 
+
+/* Upload fotos productos */
+
+#containerImages {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+#containerImages > div{
+	margin-right: 10px;
+	margin-bottom: 8px;
+}
+
+.prevImage{
+	border: 1px solid #ccc;
+	width: 120px;
+	height: 148px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.prevImage img{
+	width: 100%;
+}
+
+.inputUploadfile{
+	display: none;
+}
+
+.btnUploadfile, .btnDeleteImage{
+	border: 0;
+	background-color: #3A3259;
+	text-align: center;
+	padding: 2px 3px;
+	color: #FFF;
+	font-size: 9pt;
+	cursor: pointer;
+	width: 100%;
+}
+
+.btnDeleteImage{
+	background-color: #A60311;
+}
+
+.prevImage .loading{
+	width: 50px;
+	height: 50px;
+}
+
+#celFotos img{
+	width: 150px;
+	margin: 10px;
+}
+

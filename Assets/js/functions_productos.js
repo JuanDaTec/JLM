@@ -1,5 +1,6 @@
 document.write(`<script src="${base_url}/Assets/js/plugins/JsBarcode.all.min.js"></script>`);
 let tableProductos;
+let rowTable = "";
 var divLoadingOther = document.querySelector("#divLoadingOther");
 
 
@@ -43,7 +44,7 @@ window.addEventListener("load", function () {
                 "titleAttr": "Copiar elementos",
                 "className": "btn btn-secondary",
                 "exportOptions": {
-                    "columns": [0, 1, 2, 3, 4, 5, 6]
+                    "columns": [0, 1, 2, 3, 4, 5]
                 }
 
             }, {
@@ -52,7 +53,7 @@ window.addEventListener("load", function () {
                 "titleAttr": "Exportar a Excel",
                 "className": "btn btn-success",
                 "exportOptions": {
-                    "columns": [0, 1, 2, 3, 4, 5, 6]
+                    "columns": [0, 1, 2, 3, 4, 5]
                 }
             }, {
                 "extend": "pdfHtml5",
@@ -60,7 +61,7 @@ window.addEventListener("load", function () {
                 "titleAttr": "Exportar a PDF",
                 "className": "btn btn-danger",
                 "exportOptions": {
-                    "columns": [0, 1, 2, 3, 4, 5, 6]
+                    "columns": [0, 1, 2, 3, 4, 5]
                 }
             }, {
                 "extend": "csvHtml5",
@@ -68,7 +69,7 @@ window.addEventListener("load", function () {
                 "titleAttr": "Exportar a CSV",
                 "className": "btn btn-info",
                 "exportOptions": {
-                    "columns": [0, 1, 2, 3, 4, 5, 6]
+                    "columns": [0, 1, 2, 3, 4, 5]
                 }
             }
         ],
@@ -86,6 +87,7 @@ window.addEventListener("load", function () {
             let intCodigo = document.querySelector('#txtCodigo').value;
             let strPrecio = document.querySelector('#txtPrecio').value;
             let intStock = document.querySelector('#txtStock').value;
+            let intStatus = document.querySelector('#listStatus').value;
 
             if (strNombre == '' || intCodigo == '' || strPrecio == '' || intStock == '') {
                 swal("¡Atención!", "Todos los campos son obligatorios.", "error");
@@ -105,21 +107,53 @@ window.addEventListener("load", function () {
             request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200) {
                     let objData = JSON.parse(request.responseText);
-                    if(objData.status)
-                    {
-                        swal("", objData.msg ,"success");
-                        tableProductos.api().ajax.reload();
+                    if (objData.status) {
+                        swal("", objData.msg, "success");
                         document.querySelector("#idProducto").value = objData.idproducto;
-                    }else{
-                        swal("Error", objData.msg , "error");
-                    }              
+                        document.querySelector("#containerGallery").classList.remove("notBlock");
+                        if(rowTable == ""){
+                            tableProductos.api().ajax.reload();
+                        }else{
+                           htmlStatus = intStatus == 1 ? 
+                            '<span class="badge badge-success">Habilitado</span>' : 
+                            '<span class="badge badge-danger">Deshabilitado</span>';
+                            rowTable.cells[1].textContent = intCodigo;
+                            rowTable.cells[2].textContent = strNombre;
+                            rowTable.cells[3].textContent = intStock;
+                            rowTable.cells[4].textContent = smony+strPrecio;
+                            rowTable.cells[5].innerHTML =  htmlStatus;
+                            rowTable = ""; 
+                        }
+
+                        
+                        
+                    } else {
+                        swal("Error", objData.msg, "error");
+                    }
                 }
                 divLoadingOther.style.display = "none";
             }
         }
     }
 
+    if (document.querySelector(".btnAddImage")) {
+        let btnAddImage = document.querySelector(".btnAddImage");
+        btnAddImage.onclick = function (e) {
+            let key = Date.now();
+            let newElement = document.createElement("div");
+            newElement.id = "div" + key;
+            newElement.innerHTML = `<div class="prevImage"></div>
+                                    <input type="file" name="foto" id="img${key}" class="inputUploadfile">
+                                    <label for="img${key}" class="btnUploadfile"><i class="fas fa-upload"></i></label>
+                                    <button class="btnDeleteImage notBlock" type="button" onclick="fntDelItem('#div${key}')"><i class="fas fa-trash-alt"></i></button>`;
+            document.querySelector("#containerImages").appendChild(newElement);
+            document.querySelector("#div" + key + " .btnUploadfile").click();
+            fntInputFile();
+        }
+    }
+
     setTimeout(() => {
+        fntInputFile();
         fntCategorias();
     }, 500);
 }, false);
@@ -150,10 +184,234 @@ tinymce.init({
     toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
 });
 
+function fntInputFile() {
+    let inputUploadfile = document.querySelectorAll(".inputUploadfile");
+    inputUploadfile.forEach(function (inputUploadfile) {
+        inputUploadfile.addEventListener('change', function () {
+            let idProducto = document.querySelector("#idProducto").value;
+            let parentId = this.parentNode.getAttribute("id");
+            let idFile = this.getAttribute("id");
+            let uploadFoto = document.querySelector("#" + idFile).value;
+            let fileimg = document.querySelector("#" + idFile).files;
+            let prevImg = document.querySelector("#" + parentId + " .prevImage");
+            let nav = window.URL || window.webkitURL;
+            if (uploadFoto != '') {
+                let type = fileimg[0].type;
+                let name = fileimg[0].name;
+                if (type != 'image/jpeg' && type != 'image/jpg' && type != 'image/png') {
+                    prevImg.innerHTML = "Archivo no válido";
+                    uploadFoto.value = "";
+                    return false;
+                } else {
+                    let objeto_url = nav.createObjectURL(this.files[0]);
+                    prevImg.innerHTML = `<img class="loading" src="${base_url}/Assets/images/loading.svg">`;
+
+                    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+                    let ajaxUrl = base_url + '/Productos/setImage';
+                    let formData = new FormData();
+                    formData.append('idproducto', idProducto);
+                    formData.append("foto", this.files[0]);
+                    request.open("POST", ajaxUrl, true);
+                    request.send(formData);
+                    request.onreadystatechange = function () {
+                        if (request.readyState != 4) return;
+                        if (request.status == 200) {
+                            let objData = JSON.parse(request.responseText);
+                            if (objData.status) {
+                                prevImg.innerHTML = `<img src="${objeto_url}">`;
+                                document.querySelector("#" + parentId + " .btnDeleteImage").setAttribute("imgname", objData.imgname);
+                                document.querySelector("#" + parentId + " .btnUploadfile").classList.add("notBlock");
+                                document.querySelector("#" + parentId + " .btnDeleteImage").classList.remove("notBlock");
+                            } else {
+                                swal("Error", objData.msg, "error");
+                            }
+
+                        }
+                    }
+
+                }
+            }
+
+        });
+
+    });
+
+}
+
+function fntDelItem(element){
+    let nameImg = document.querySelector(element+' .btnDeleteImage').getAttribute("imgname");
+    let idProducto = document.querySelector("#idProducto").value;
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let ajaxUrl = base_url+'/Productos/delFile'; 
+
+    let formData = new FormData();
+    formData.append('idproducto',idProducto);
+    formData.append("file",nameImg);
+    request.open("POST",ajaxUrl,true);
+    request.send(formData);
+    request.onreadystatechange = function(){
+        if(request.readyState != 4) return;
+        if(request.status == 200){
+            let objData = JSON.parse(request.responseText);
+            if(objData.status)
+            {
+                let itemRemove = document.querySelector(element);
+                itemRemove.parentNode.removeChild(itemRemove);
+            }else{
+                swal("", objData.msg , "error");
+            }
+        }
+    }
+}
+
+
+function fntViewInfo(idProducto) {
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let ajaxUrl = base_url + '/Productos/getProducto/' + idProducto;
+    request.open("GET", ajaxUrl, true);
+    request.send();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            let objData = JSON.parse(request.responseText);
+            if (objData.status) {
+                let htmlImage = "";
+                let objProducto = objData.data;
+                let estadoProducto = objData.data.status == 1 ?
+                    '<span class="badge badge-success">Habilitado</span>' :
+                    '<span class="badge badge-danger">Deshabilitado</span>';
+                document.querySelector("#celCodigo").innerHTML = objProducto.codigo;
+                document.querySelector("#celNombre").innerHTML = objProducto.nombre;
+                document.querySelector("#celPrecio").innerHTML = objProducto.precio;
+                document.querySelector("#celStock").innerHTML = objProducto.stock;
+                document.querySelector("#celCategoria").innerHTML = objProducto.categoria;
+                document.querySelector("#celStatus").innerHTML = estadoProducto;
+                document.querySelector("#celDescripcion").innerHTML = objProducto.descripcion;
+
+                if (objProducto.images.length > 0) {
+                    let objProductos = objProducto.images;
+                    for (let p = 0; p < objProductos.length; p++) {
+                        htmlImage += `<img src="${objProductos[p].url_image}"></img>`;
+                    }
+
+                }
+                document.querySelector("#celFotos").innerHTML = htmlImage;
+                $('#modalViewProducto').modal('show');
+
+            } else {
+                swal("Error", objData, msg, "error");
+            }
+
+        }
+    }
+
+    $('#modalViewProducto').modal('show');
+}
+
+
+function fntEditInfo(element, idProducto) {
+
+    rowTable = element.parentNode.parentNode.parentNode;
+    document.querySelector('#btnText').innerHTML = "Actualizar";
+    document.querySelector('#titleModal').innerHTML = "Actualizar producto";
+
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let ajaxUrl = base_url + '/Productos/getProducto/' + idProducto;
+    request.open("GET", ajaxUrl, true);
+    request.send();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            let objData = JSON.parse(request.responseText);
+            if (objData.status) {
+                let htmlImage = "";
+                let objProducto = objData.data;
+                document.querySelector("#idProducto").value = objProducto.idproducto;
+                document.querySelector("#txtNombre").value = objProducto.nombre;
+                document.querySelector("#txtDescripcion").value = objProducto.descripcion;
+                document.querySelector("#txtCodigo").value = objProducto.codigo;
+                document.querySelector("#txtPrecio").value = objProducto.precio;
+                document.querySelector("#txtStock").value = objProducto.stock;
+                document.querySelector("#listCategoria").value = objProducto.categoriaid;
+                document.querySelector("#listStatus").value = objProducto.status;
+
+                tinymce.activeEditor.setContent(objProducto.descripcion);
+                $('#listCategoria').selectpicker('render');
+                $('#listStatus').selectpicker('render');
+                fntBarcode();
+                document.querySelector('#divBarCode').classList.remove("notBlock");
+
+                if (objProducto.images.length > 0) {
+                    let objProductos = objProducto.images;
+                    for (let p = 0; p < objProductos.length; p++) {
+                        let key = Date.now() + p;
+                        htmlImage += `<div id="div${key}">
+                                <div class="prevImage">
+                                <img src = "${objProductos[p].url_image}"></img>
+                                </div>
+                                <button type="button" class="btnDeleteImage" onclick="fntDelItem('#div${key}')" imgname="${objProductos[p].img}">
+                                <i class = "fas fa-trash-alt"></i></button></div>`;
+                    }
+                }
+                document.querySelector('#containerImages').innerHTML = htmlImage;
+                document.querySelector("#divBarCode").classList.remove("notBlock");
+                document.querySelector("#containerGallery").classList.remove("notBlock");    
+
+                $('#modalFormProductos').modal('show');
+
+
+            } else {
+                swal("Error", objData, msg, "error");
+            }
+
+        }
+    }
+
+    $('#modalFormProductos').modal('show');
+
+
+}
+
+function fntDelInfo(idProducto){
+    swal({
+        title: "Eliminar Producto",
+        text: "¿Realmente quiere eliminar este producto?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Si, ¡Eliminar!",
+        cancelButtonText: "No, ¡Cancelar!",
+        closeOnConfirm: false,
+        closeOnCancel: true
+    }, function(isConfirm) {
+        
+        if (isConfirm) 
+        {
+            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            let ajaxUrl = base_url+'/Productos/delProducto';
+            let strData = "idProducto="+idProducto;
+            request.open("POST",ajaxUrl,true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send(strData);
+            request.onreadystatechange = function(){
+                if(request.readyState == 4 && request.status == 200){
+                    let objData = JSON.parse(request.responseText);
+                    if(objData.status)
+                    {
+                        swal("Eliminado", objData.msg , "success");
+                        tableProductos.api().ajax.reload();
+                    }else{
+                        swal("Atención!", objData.msg , "error");
+                    }
+                }
+            }
+        }
+
+    });
+
+}
+
 function fntCategorias() {
     if (document.querySelector('#listCategoria')) {
         let ajaxUrl = base_url + '/Categorias/getSelectCategorias';
-        let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHttpRequest');
+        let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
         request.open("GET", ajaxUrl, true);
         request.send();
         request.onreadystatechange = function () {
@@ -180,9 +438,13 @@ function fntPrintBarcode(area) {
 }
 
 function openModal() {
+    rowTable = "";
     document.querySelector('#idProducto').value = "";
     document.querySelector('#btnText').innerHTML = "Guardar";
     document.querySelector('#titleModal').innerHTML = "Nuevo producto";
     document.querySelector("#formProductos").reset();
+    document.querySelector("#divBarCode").classList.add("notBlock");
+    document.querySelector("#containerGallery").classList.add("notBlock");
+    document.querySelector("#containerImages").innerHTML = "";
     $('#modalFormProductos').modal('show');
 }
