@@ -26,7 +26,10 @@
 	const NOMBRE_REMITENTE = "JLM WorkShop";
 	const EMAIL_REMITENTE = "no-reply@jlmworkshop.com";
 	const NOMBRE_EMPRESA = "JLM WorkShop";
-	const WEB_EMPRESA = "https://jlmworks.herokuapp.com/";
+    const WEB_EMPRESA = "https://jlmworks.herokuapp.com/";
+    
 
+    const CAT_SLIDER = "1,3,4";
+    const CAT_BANNER = "6,7,8";
 
 ?>

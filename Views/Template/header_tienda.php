@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="<?= media() ?>/tienda/images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="<?= media() ?>/tienda/images/favicon.ico"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= media() ?>/tienda/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -151,7 +151,7 @@
 							Preguntas y respuestas.
 						</a>
 
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
+						<a href="https://jlmworks.herokuapp.com/login" class="flex-c-m p-lr-10 trans-04">
 							Mi cuenta
 						</a>
 
