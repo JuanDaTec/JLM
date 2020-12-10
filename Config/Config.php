@@ -25,7 +25,7 @@
     //Datos envio de correo
 	const NOMBRE_REMITENTE = "JLM WorkShop";
 	const EMAIL_REMITENTE = "no-reply@jlmworkshop.com";
-	const NOMBRE_EMPRESA = "JLM WorkSHop";
+	const NOMBRE_EMPRESA = "JLM WorkShop";
 	const WEB_EMPRESA = "https://jlmworks.herokuapp.com/";
 
 
