@@ -53,7 +53,7 @@
 							Preguntas y respuestas
 						</a>
 
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
+						<a href="<?= base_url().'./login';?>" class="flex-c-m trans-04 p-lr-25">
 							Mi cuenta
 						</a>
 
@@ -151,7 +151,7 @@
 							Preguntas y respuestas.
 						</a>
 
-						<a href="https://jlmworks.herokuapp.com/login" class="flex-c-m p-lr-10 trans-04">
+						<a href="<?= base_url().'./login';?>" class="flex-c-m p-lr-10 trans-04">
 							Mi cuenta
 						</a>
 
