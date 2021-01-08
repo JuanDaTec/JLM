@@ -29,7 +29,7 @@
     const WEB_EMPRESA = "https://jlmworks.herokuapp.com/";
     
 
-    const CAT_SLIDER = "1,3,4";
-    const CAT_BANNER = "6,7,8";
+    const CAT_SLIDER = "13,14,15";
+    const CAT_BANNER = "6,7,11";
 
 ?>

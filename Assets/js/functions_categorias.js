@@ -1,5 +1,6 @@
-var tableCategorias;
-var divLoadingOther = document.querySelector("#divLoadingOther");
+let tableCategorias;
+let rowTable = "";
+let divLoadingOther = document.querySelector("#divLoadingOther");
 
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -66,15 +67,15 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
     if(document.querySelector("#foto")){
-        var foto = document.querySelector("#foto");
+        let foto = document.querySelector("#foto");
         foto.onchange = function(e) {
-            var uploadFoto = document.querySelector("#foto").value;
-            var fileimg = document.querySelector("#foto").files;
-            var nav = window.URL || window.webkitURL;
-            var contactAlert = document.querySelector('#form_alert');
+            let uploadFoto = document.querySelector("#foto").value;
+            let fileimg = document.querySelector("#foto").files;
+            let nav = window.URL || window.webkitURL;
+            let contactAlert = document.querySelector('#form_alert');
             if(uploadFoto !=''){
-                var type = fileimg[0].type;
-                var name = fileimg[0].name;
+                let type = fileimg[0].type;
+                let name = fileimg[0].name;
                 if(type != 'image/jpeg' && type != 'image/jpg' && type != 'image/png'){
                     contactAlert.innerHTML = '<p class="errorArchivo">El archivo no es válido.</p>';
                     if(document.querySelector('#img')){
@@ -89,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function(){
                             document.querySelector('#img').remove();
                         }
                         document.querySelector('.delPhoto').classList.remove("notBlock");
-                        var objeto_url = nav.createObjectURL(this.files[0]);
+                        let objeto_url = nav.createObjectURL(this.files[0]);
                         document.querySelector('.prevPhoto div').innerHTML = "<img id='img' src="+objeto_url+">";
                     }
             }else{
@@ -102,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     
     if(document.querySelector(".delPhoto")){
-        var delPhoto = document.querySelector(".delPhoto");
+        let delPhoto = document.querySelector(".delPhoto");
         delPhoto.onclick = function(e) {
             document.querySelector("#foto_remove").value= 1;
             removePhoto();
@@ -110,34 +111,45 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     	//Nueva Categoria
-        var formCategoria = document.querySelector("#formCategoria");
+        let formCategoria = document.querySelector("#formCategoria");
         formCategoria.onsubmit = function(e) {
             e.preventDefault();
-            var strNombre = document.querySelector('#txtNombre').value;
-            var strDescripcion = document.querySelector('#txtDescripcion').value;
-            var intStatus = document.querySelector('#listStatus').value;        
+            let strNombre = document.querySelector('#txtNombre').value;
+            let strDescripcion = document.querySelector('#txtDescripcion').value;
+            let intStatus = document.querySelector('#listStatus').value;        
             if(strNombre == '' || strDescripcion == '' || intStatus == '')
             {
                 swal("Atención", "Todos los campos son obligatorios." , "error");
                 return false;
             }
             divLoadingOther.style.display = "flex";
-            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            var ajaxUrl = base_url+'/Categorias/setCategoria'; 
-            var formData = new FormData(formCategoria);
+            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            let ajaxUrl = base_url+'/Categorias/setCategoria'; 
+            let formData = new FormData(formCategoria);
             request.open("POST",ajaxUrl,true);
             request.send(formData);
             request.onreadystatechange = function(){
                if(request.readyState == 4 && request.status == 200){
                     
-                    var objData = JSON.parse(request.responseText);
+                    let objData = JSON.parse(request.responseText);
                     if(objData.status)
                     {
+                        if(rowTable == ""){
+                            tableCategorias.api().ajax.reload();
+                        }else{
+                            htmlStatus = intStatus == 1 ?
+                                '<span class="badge badge-success">Habilitado</span>' :
+                                '<span class="badge badge-danger">Inhabilitado</span>';
+                            rowTable.cells[1].textContent = strNombre;
+                            rowTable.cells[2].textContent = strDescripcion;
+                            rowTable.cells[3].innerHTML = htmlStatus;
+                            rowTable = "";
+                        }
                         $('#modalFormCategorias').modal("hide");
                         formCategoria.reset();
                         swal("Categoria", objData.msg ,"success");
                         removePhoto();
-                        tableCategorias.api().ajax.reload();
+                        
                     }else{
                         swal("Error", objData.msg , "error");
                     }              
@@ -150,17 +162,17 @@ document.addEventListener('DOMContentLoaded', function(){
 }, false);
 
 function fntViewInfo(idcategoria){
-    var idcategoria = idcategoria;
-    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    var ajaxUrl = base_url+'/Categorias/getCategoria/'+idcategoria;
+
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let ajaxUrl = base_url+'/Categorias/getCategoria/'+idcategoria;
     request.open("GET",ajaxUrl,true);
     request.send();
     request.onreadystatechange = function(){
         if(request.readyState == 4 && request.status == 200){
-            var objData = JSON.parse(request.responseText);
+            let objData = JSON.parse(request.responseText);
             if(objData.status)
             {
-                var estado = objData.data.status == 1 ? 
+                let estado = objData.data.status == 1 ? 
                 '<span class="badge badge-success">Habilitado</span>' : 
                 '<span class="badge badge-danger">Deshabilitado</span>';
                 document.querySelector("#celId").innerHTML = objData.data.idcategoria;
@@ -176,18 +188,17 @@ function fntViewInfo(idcategoria){
     }
 }
 
-function fntEditInfo(idcategoria){
-
+function fntEditInfo(element,idcategoria){
+    rowTable = element.parentNode.parentNode.parentNode;
     document.querySelector('#titleModal').innerHTML ="Actualizar Categoría";
     document.querySelector('#btnText').innerHTML ="Actualizar";
-    var idcategoria = idcategoria;
-    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    var ajaxUrl = base_url+'/Categorias/getCategoria/'+idcategoria;
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let ajaxUrl = base_url+'/Categorias/getCategoria/'+idcategoria;
     request.open("GET",ajaxUrl,true);
     request.send();
     request.onreadystatechange = function(){
         if(request.readyState == 4 && request.status == 200){
-            var objData = JSON.parse(request.responseText);
+            let objData = JSON.parse(request.responseText);
             if(objData.status)
             {
                 document.querySelector("#idCategoria").value = objData.data.idcategoria;
@@ -227,7 +238,6 @@ function fntEditInfo(idcategoria){
 }
 
 function fntDelInfo(idcategoria){
-    var idCategoria = idcategoria;
     swal({
         title: "Eliminar Categoría",
         text: "¿Realmente quieres eliminar la categoría?",
@@ -241,15 +251,15 @@ function fntDelInfo(idcategoria){
         
         if (isConfirm) 
         {
-            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            var ajaxUrl = base_url+'/Categorias/delCategoria';
-            var strData = "idCategoria="+idCategoria;
+            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            let ajaxUrl = base_url+'/Categorias/delCategoria';
+            let strData = "idCategoria="+idcategoria;
             request.open("POST",ajaxUrl,true);
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             request.send(strData);
             request.onreadystatechange = function(){
                 if(request.readyState == 4 && request.status == 200){
-                    var objData = JSON.parse(request.responseText);
+                    let objData = JSON.parse(request.responseText);
                     if(objData.status)
                     {
                         swal("Eliminar!", objData.msg , "success");
@@ -278,6 +288,7 @@ function removePhoto(){
 
 function openModal()
 {
+    rowTable = "";
     document.querySelector('#idCategoria').value ="";
     document.querySelector('#btnText').innerHTML ="Guardar";
     document.querySelector('#titleModal').innerHTML = "Nueva categoría";
