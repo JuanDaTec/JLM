@@ -32,4 +32,8 @@
     const CAT_SLIDER = "13,14,15";
     const CAT_BANNER = "6,7,11";
 
+    //Datos para Encriptar / Desencriptar
+	const KEY = 'juandatec';
+	const METHODENCRIPT = "AES-128-ECB"; //Extraido de la documentación de PHP
+
 ?>
