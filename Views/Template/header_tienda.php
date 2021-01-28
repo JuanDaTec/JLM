@@ -1,42 +1,72 @@
+<?php
+$cantCarrito = 0;
+if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
+	foreach ($_SESSION['arrCarrito'] as $product) {
+		$cantCarrito += $product['cantidad'];
+	}
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<title><?= $data['page_tag']; ?></title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="<?= media() ?>/tienda/images/favicon.ico"/>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="<?= media() ?>/tienda/images/favicon.ico" />
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= media() ?>/tienda/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= media() ?>/tienda/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= media() ?>/tienda/fonts/iconic/css/material-design-iconic-font.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= media() ?>/tienda/fonts/linearicons-v1.0.0/icon-font.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= media() ?>/tienda/vendor/animate/animate.css">
-<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= media() ?>/tienda/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= media() ?>/tienda/vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= media() ?>/tienda/vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= media() ?>/tienda/vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= media() ?>/tienda/vendor/slick/slick.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= media() ?>/tienda/vendor/MagnificPopup/magnific-popup.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= media() ?>/tienda/vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= media() ?>/tienda/css/util.css">
 	<link rel="stylesheet" type="text/css" href="<?= media() ?>/tienda/css/main.css">
-<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?= media(); ?>/css/style.css">
+	<!--===============================================================================================-->
 </head>
+
 <body class="animsition">
-	
+
+	<div id="divLoadingOther">
+		<div>
+			<img src="<?= media(); ?>/images/loading.svg" alt="Loading">
+		</div>
+
+	</div>
+
+	<div id="divLoading">
+		<div>
+			<img src="<?= media(); ?>/images/loading.svg" alt="Loading">
+		</div>
+	</div>
+
+	<div id="divLoading2">
+		<div>
+			<img src="<?= media(); ?>/images/start_session.png" alt="Loading">
+		</div>
+	</div>
+
 	<!-- Header -->
 	<header>
 		<!-- Header desktop -->
@@ -53,7 +83,7 @@
 							Preguntas y respuestas
 						</a>
 
-						<a href="<?= base_url().'/login';?>" class="flex-c-m trans-04 p-lr-25">
+						<a href="<?= base_url() . '/login'; ?>" class="flex-c-m trans-04 p-lr-25">
 							Mi cuenta
 						</a>
 
@@ -66,8 +96,8 @@
 
 			<div class="wrap-menu-desktop">
 				<nav class="limiter-menu-desktop container">
-					
-					<!-- Logo desktop -->		
+
+					<!-- Logo desktop -->
 					<a href="<?= base_url(); ?>" class="logo">
 						<img src="<?= media() ?>/tienda/images/logo.png" alt="JLM WorkShop">
 					</a>
@@ -84,6 +114,10 @@
 							</li>
 
 							<li>
+								<a href="<?= base_url(); ?>/carrito">Carrito</a>
+							</li>
+
+							<li>
 								<a href="<?= base_url(); ?>/nosotros">Acerca de JLM</a>
 							</li>
 
@@ -91,7 +125,7 @@
 								<a href="<?= base_url(); ?>/contacto">Contacto</a>
 							</li>
 						</ul>
-					</div>	
+					</div>
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
@@ -99,18 +133,20 @@
 							<i class="zmdi zmdi-search"></i>
 						</div>
 
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
-							<i class="zmdi zmdi-shopping-cart"></i>
-						</div>
+						<?php if ($data['page_name'] != "carrito") { ?>
+							<div class="cantCarrito icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="<?= $cantCarrito; ?> ">
+								<i class="zmdi zmdi-shopping-cart"></i>
+							</div>
+						<?php } ?>
 
 					</div>
 				</nav>
-			</div>	
+			</div>
 		</div>
 
 		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
-			<!-- Logo moblie -->		
+			<!-- Logo moblie -->
 			<div class="logo-mobile">
 				<a href="<?= base_url(); ?>"><img src="<?= media() ?>/tienda/images/logo.png" alt="JLM WorkShop"></a>
 			</div>
@@ -121,9 +157,11 @@
 					<i class="zmdi zmdi-search"></i>
 				</div>
 
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
-					<i class="zmdi zmdi-shopping-cart"></i>
-				</div>
+				<?php if ($data['page_name'] != "carrito") { ?>
+					<div class="cantCarrito icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="<?= $cantCarrito; ?> ">
+						<i class="zmdi zmdi-shopping-cart"></i>
+					</div>
+				<?php } ?>
 
 			</div>
 
@@ -151,7 +189,7 @@
 							Preguntas y respuestas.
 						</a>
 
-						<a href="<?= base_url().'/login';?>" class="flex-c-m p-lr-10 trans-04">
+						<a href="<?= base_url() . '/login'; ?>" class="flex-c-m p-lr-10 trans-04">
 							Mi cuenta
 						</a>
 
@@ -164,11 +202,15 @@
 
 			<ul class="main-menu-m">
 				<li>
-					<a href="<?= base_url(); ?>">Home</a>					
+					<a href="<?= base_url(); ?>">Home</a>
 				</li>
 
 				<li>
 					<a href="<?= base_url(); ?>/tienda">Tienda</a>
+				</li>
+
+				<li>
+					<a href="<?= base_url(); ?>/carrito">Carrito</a>
 				</li>
 
 				<li>
@@ -197,3 +239,25 @@
 			</div>
 		</div>
 	</header>
+
+	<!-- Cart -->
+	<div class="wrap-header-cart js-panel-cart">
+		<div class="s-full js-hide-cart"></div>
+
+		<div class="header-cart flex-col-l p-l-65 p-r-25">
+			<div class="header-cart-title flex-w flex-sb-m p-b-8">
+				<span class="mtext-103 cl2">
+					Tu carrito
+				</span>
+
+				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+					<i class="zmdi zmdi-close"></i>
+				</div>
+			</div>
+
+			<div id="productosCarrito" class="header-cart-content flex-w js-pscroll">
+				<?php getModal('modalCarrito', $data); ?>
+
+			</div>
+		</div>
+	</div>

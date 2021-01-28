@@ -237,3 +237,11 @@
 	margin: 10px;
 }
 
+/* TIENDA JLM */
+.divmetodpago label{
+	width: 100%;
+	display: flex;
+}
+.divmetodpago label input{
+	margin-right: 15px;
+}

@@ -36,4 +36,6 @@
 	const KEY = 'juandatec';
 	const METHODENCRIPT = "AES-128-ECB"; //Extraido de la documentación de PHP
 
+    //Envío
+    const COSTOENVIO = 5000;
 ?>

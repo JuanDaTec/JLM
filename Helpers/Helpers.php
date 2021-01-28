@@ -64,6 +64,14 @@ require 'SMTP.php';
         require_once $view_modal;
     }
 
+    function getFile(string $url, $data)
+    {
+        ob_start();
+        require_once("Views/{$url}.php");
+        $file = ob_get_clean();
+        return $file;        
+    }
+
     //Envio de correos
     function sendEmail($data,$template){
         
