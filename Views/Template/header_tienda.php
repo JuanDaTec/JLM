@@ -7,12 +7,13 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 	<title><?= $data['page_tag']; ?></title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="<?= media() ?>/tienda/images/favicon.ico" />
 	<!--===============================================================================================-->
@@ -75,20 +76,12 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
 					<div class="left-top-bar">
-						Bienvenido Juan David.
+						Bienvenido a JLM WorkShop
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							Preguntas y respuestas
-						</a>
-
 						<a href="<?= base_url() . '/login'; ?>" class="flex-c-m trans-04 p-lr-25">
-							Mi cuenta
-						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							Salir
+							Ingreso administrativo
 						</a>
 					</div>
 				</div>
@@ -133,7 +126,7 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
 							<i class="zmdi zmdi-search"></i>
 						</div>
 
-						<?php if ($data['page_name'] != "carrito") { ?>
+						<?php if ($data['page_name'] != "carrito" and $data['page_name'] != "procesarpago") { ?>
 							<div class="cantCarrito icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="<?= $cantCarrito; ?> ">
 								<i class="zmdi zmdi-shopping-cart"></i>
 							</div>
@@ -157,7 +150,7 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
 					<i class="zmdi zmdi-search"></i>
 				</div>
 
-				<?php if ($data['page_name'] != "carrito") { ?>
+				<?php if ($data['page_name'] != "carrito" and $data['page_name'] != "procesarpago") { ?>
 					<div class="cantCarrito icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="<?= $cantCarrito; ?> ">
 						<i class="zmdi zmdi-shopping-cart"></i>
 					</div>
@@ -179,7 +172,7 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
 			<ul class="topbar-mobile">
 				<li>
 					<div class="left-top-bar">
-						Bienvenido Juan David
+						Bienvenido a JLM WorkShop
 					</div>
 				</li>
 
@@ -234,7 +227,7 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
 					<button class="flex-c-m trans-04">
 						<i class="zmdi zmdi-search"></i>
 					</button>
-					<input class="plh3" type="text" name="search" placeholder="Search...">
+					<input class="plh3" type="text" name="search" placeholder="¿Que estas buscando?">
 				</form>
 			</div>
 		</div>

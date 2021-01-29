@@ -136,64 +136,62 @@ if (document.querySelector(".num-product")) {
 }
 
 
-if(document.querySelector("#formRegister")){
-    let formRegister = document.querySelector("#formRegister");
-    formRegister.onsubmit = function(e) {
-        e.preventDefault();
-        let strNombre = document.querySelector('#txtNombre').value;
-        let strApellido = document.querySelector('#txtApellido').value;
-        let strEmail = document.querySelector('#txtEmailCliente').value;
-        let intTelefono = document.querySelector('#txtTelefono').value;
+if (document.querySelector("#formRegister")) {
+	let formRegister = document.querySelector("#formRegister");
+	formRegister.onsubmit = function (e) {
+		e.preventDefault();
+		let strNombre = document.querySelector('#txtNombre').value;
+		let strApellido = document.querySelector('#txtApellido').value;
+		let strEmail = document.querySelector('#txtEmailCliente').value;
+		let intTelefono = document.querySelector('#txtTelefono').value;
 
-        if(strApellido == '' || strNombre == '' || strEmail == '' || intTelefono == '' )
-        {
-            swal("Atención", "Todos los campos son obligatorios." , "error");
-            return false;
-        }
+		if (strApellido == '' || strNombre == '' || strEmail == '' || intTelefono == '') {
+			swal("Atención", "Todos los campos son obligatorios.", "error");
+			return false;
+		}
 
-        let elementsValid = document.getElementsByClassName("valid");
-        for (let i = 0; i < elementsValid.length; i++) { 
-            if(elementsValid[i].classList.contains('is-invalid')) { 
-                swal("Atención", "Por favor verifique los campos en rojo." , "error");
-                return false;
-            } 
-        } 
-        divLoadingOther.style.display = "flex";
-        let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-        let ajaxUrl = base_url+'/Tienda/registro'; 
-        let formData = new FormData(formRegister);
-        request.open("POST",ajaxUrl,true);
-        request.send(formData);
-        request.onreadystatechange = function(){
-            if(request.readyState == 4 && request.status == 200){
-                let objData = JSON.parse(request.responseText);
-                if(objData.status)
-                {
-                    window.location.reload(false);
-                }else{
-                    swal("Error", objData.msg , "error");
-                }
-            }
-            divLoadingOther.style.display = "none";
-            return false;
-        }
-    }
+		let elementsValid = document.getElementsByClassName("valid");
+		for (let i = 0; i < elementsValid.length; i++) {
+			if (elementsValid[i].classList.contains('is-invalid')) {
+				swal("Atención", "Por favor verifique los campos en rojo.", "error");
+				return false;
+			}
+		}
+		divLoadingOther.style.display = "flex";
+		let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+		let ajaxUrl = base_url + '/Tienda/registro';
+		let formData = new FormData(formRegister);
+		request.open("POST", ajaxUrl, true);
+		request.send(formData);
+		request.onreadystatechange = function () {
+			if (request.readyState == 4 && request.status == 200) {
+				let objData = JSON.parse(request.responseText);
+				if (objData.status) {
+					window.location.reload(false);
+				} else {
+					swal("Error", objData.msg, "error");
+				}
+			}
+			divLoadingOther.style.display = "none";
+			return false;
+		}
+	}
 }
 
-if(document.querySelector(".methodpago")){
+if (document.querySelector(".methodpago")) {
 
 	let optmetodo = document.querySelectorAll(".methodpago");
-    optmetodo.forEach(function(optmetodo) {
-        optmetodo.addEventListener('click', function(){
-        	if(this.value == "Paypal"){
-        		document.querySelector("#msgpaypal").classList.remove("notBlock");
-        		document.querySelector("#divtipopago").classList.add("notBlock");
-        	}else{
-        		document.querySelector("#msgpaypal").classList.add("notBlock");
-        		document.querySelector("#divtipopago").classList.remove("notBlock");
-        	}
-        });
-    });
+	optmetodo.forEach(function (optmetodo) {
+		optmetodo.addEventListener('click', function () {
+			if (this.value == "Paypal") {
+				document.querySelector("#divpaypal").classList.remove("notBlock");
+				document.querySelector("#divtipopago").classList.add("notBlock");
+			} else {
+				document.querySelector("#divpaypal").classList.add("notBlock");
+				document.querySelector("#divtipopago").classList.remove("notBlock");
+			}
+		});
+	});
 }
 
 function fntdelItem(element) {
@@ -270,3 +268,64 @@ function fntUpdateCant(pro, cant) {
 	return false;
 }
 
+if (document.querySelector("#txtDireccion")) {
+	let direccion = document.querySelector("#txtDireccion");
+	direccion.addEventListener('keyup', function () {
+		let dir = this.value;
+		fntViewPago();
+	});
+}
+
+if (document.querySelector("#txtCiudad")) {
+	let ciudad = document.querySelector("#txtCiudad");
+	ciudad.addEventListener('keyup', function () {
+		let c = this.value;
+		fntViewPago();
+	});
+}
+
+function fntViewPago() {
+	let direccion = document.querySelector("#txtDireccion").value;
+	let ciudad = document.querySelector("#txtCiudad").value;
+	if (direccion == "" || ciudad == "") {
+		document.querySelector('#divMetodoPago').classList.add("notBlock");
+	} else {
+		document.querySelector('#divMetodoPago').classList.remove("notBlock");
+	}
+}
+
+if(document.querySelector("#btnComprar")) {
+	let btnPago = document.querySelector("#btnComprar");
+	btnPago.addEventListener('click', function () {
+		let dir = document.querySelector("#txtDireccion").value;
+		let ciudad = document.querySelector("#txtCiudad").value;
+		let inttipopago = document.querySelector("#listtipopago").value;
+		if (txtDireccion == "" || txtCiudad == "" || inttipopago == "") {
+			swal("", "Complete los datos de envío", error);
+			return;
+		} else {
+			divLoadingOther.style.display= "flex";
+			let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : ActiveXObject('Microsoft.XMLHTTP');
+			let ajaxUrl = base_url + '/Tienda/procesarVenta';
+			let formData = new FormData();
+			formData.append('direccion', dir);
+			formData.append('ciudad', ciudad);
+			formData.append('inttipopago', inttipopago);
+			request.open("POST", ajaxUrl, true);
+			request.send(formData);
+			request.onreadystatechange = function () {
+				if (request.readyState != 4) return;
+				if (request.status == 200) {
+					let objData = JSON.parse(request.responseText);
+					if (objData.status) {
+						window.location = base_url + "/tienda/confirmarpedido";
+					} else {
+						swal("", objData.msg, "error");
+					}
+				}
+				divLoadingOther.style.display= "none";
+				return false;
+			}
+		}
+	}, false);
+}
