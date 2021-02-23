@@ -81,7 +81,7 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
 
 					<div class="right-top-bar flex-w h-full">
 						<a href="<?= base_url() . '/login'; ?>" class="flex-c-m trans-04 p-lr-25">
-							Ingreso administrativo
+							Plataforma JLM WorkShop
 						</a>
 					</div>
 				</div>
@@ -171,23 +171,9 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
 		<div class="menu-mobile">
 			<ul class="topbar-mobile">
 				<li>
-					<div class="left-top-bar">
-						Bienvenido a JLM WorkShop
-					</div>
-				</li>
-
-				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							Preguntas y respuestas.
-						</a>
-
-						<a href="<?= base_url() . '/login'; ?>" class="flex-c-m p-lr-10 trans-04">
-							Mi cuenta
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							Salir
+						<a href="<?= base_url() . '/login'; ?>" class="flex-c-m trans-04 p-lr-25">
+							Plataforma JLM WorkShop
 						</a>
 					</div>
 				</li>

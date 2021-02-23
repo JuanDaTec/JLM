@@ -44,8 +44,7 @@ headerAdmin($data);
                                 <address><strong><?= NOMBRE_EMPRESA ?></strong><br>
                                     <?= DIRECCION ?><br>
                                     <?= TELEMPRESA ?><br>
-                                    <?= EMAIL_EMPRESA ?><br>
-                                    <?= WEB_EMPRESA ?>
+                                    <?= EMAIL_EMPRESA ?>
                                 </address>
                             </div>
                             <div class="col-4">
@@ -74,6 +73,7 @@ headerAdmin($data);
                                             <th class="text-right">Importe</th>
                                         </tr>
                                     </thead>
+                                    <br>
                                     <tbody>
                                         <?php
                                         $subtotal = 0;

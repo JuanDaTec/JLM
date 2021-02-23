@@ -47,7 +47,7 @@ class Pedidos extends Controllers
                     $btnView .= ' <a title="Ver detalle" href="'.base_url().'/pedidos/orden/'.$arrData[$i]['idpedido'].'" target="_blank" class="btn btn-info btn-sm"> <i class="far fa-eye"></i> </a>
                     ';
                     if($arrData[$i]['idtipopago'] == 1){
-                        $btnView .= '<button class="btn btn-info btn-sm" onClick="fntViewInfo('.$arrData[$i]['idpedido'].')" title="Ver Transacción"><i class="fa fa-paypal" aria-hidden="true"></i></button> ';
+                        $btnView .= '<button class="btn btn-warning btn-sm" onClick="fntViewInfo('.$arrData[$i]['idpedido'].')" title="Ver Transacción"><i class="fab fa-paypal fa-x3" aria-hidden="true"></i></button> ';
                     }else{
                         $btnView .='<button class="btn btn-secondary  btn-sm" disabled=""><i class="fa fa-paypal" aria-hidden="true"></i></button>';
                     }

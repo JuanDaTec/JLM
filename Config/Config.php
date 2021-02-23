@@ -10,9 +10,13 @@
 
     //Datos de conexión a Bases de datos
     const DB_HOST = "localhost";
+    //const DB_HOST = "rnr56s6e2uk326pj.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
     const DB_NAME = "kflpogmv_jlmworkshop";
+    //const DB_NAME = "n5xrbu8lg6tkt3uv";
     const DB_USER = "kflpogmv_juanda";
+    //const DB_USER = "gqp0fet0ijr0t6k4";
     const DB_PASSWORD = "Killer56020";
+    //const DB_PASSWORD = "tuq2kdqmuv5umld7";
     const DB_CHARSET = "utf8";
 
     //Separadores decimal y millar
@@ -37,11 +41,11 @@
 	const NOMBRE_REMITENTE = "JLM WorkShop";
 	const EMAIL_REMITENTE = "clientes@jlmworkshop.oaccekrf.lucusvirtual.es";
 	const NOMBRE_EMPRESA = "JLM WorkShop";
-    const WEB_EMPRESA = "https://jlmworkshop.oaccekrf.lucusvirtual.es/";
+    const WEB_EMPRESA = "https://jlmworkshop.oaccekrf.lucusvirtual.es";
 
     //Datos Empresa
     const DIRECCION = "Calle 143 #46 - 09 - Bogotá, Colombia";
-    const TELEMPRESA = "(031) 744 25 10";
+    const TELEMPRESA = "+57 (305) 797-3644";
     const EMAIL_EMPRESA = "clientes@jlmworkshop.oaccekrf.lucusvirtual.es";
     const EMAIL_PEDIDOS = "clientes@jlmworkshop.oaccekrf.lucusvirtual.es";
 

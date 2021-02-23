@@ -396,12 +396,4 @@ class Tienda extends Controllers
 		}
 		unset($_SESSION['dataorden']);
 	}
-
-	public function nosotros()
-	{
-		$data['page_tag'] = NOMBRE_EMPRESA;
-		$data['page_title'] = NOMBRE_EMPRESA;
-		$data['page_name'] = "Nosotros";
-		$this->views->getView($this, "nosotros", $data);
-	}
 }
