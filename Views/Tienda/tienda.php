@@ -12,15 +12,7 @@
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
                     <h3><?= $data['page_title']; ?></h3>
 				</div>
-
-                <div class="flex-w flex-c-m m-tb-10">
-					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
-						&nbsp;&nbsp;
-						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
-						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-						 Categoría &nbsp;
-					</div>
-				</div>
+			</div>
 
 			<div class="row isotope-grid">
 			<?php 
