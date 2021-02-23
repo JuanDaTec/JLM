@@ -9,7 +9,7 @@
 				</h4>
 
 				<p class="stext-107 cl7 size-201">
-					Trv 36 #58c 39 Sur - Candelaria La nueva <br>Bogotá - Colombia <br>Tel: (+57) 305-797-3644.
+					Calle 143 #46-09 - Prado <br>Bogotá - Colombia <br>Tel: (+57) 305-797-3644.
 				</p>
 
 				<div class="p-t-27">

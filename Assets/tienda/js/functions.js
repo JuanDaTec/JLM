@@ -74,7 +74,7 @@ $('.js-addcart-detail').each(function () {
 					cants.forEach(element => {
 						element.setAttribute("data-notify", objData.cantCarrito)
 					});
-					swal(nameProduct, "¡Se agrego al corrito!", "success");
+					swal(nameProduct, "¡Se agrego al carrito!", "success");
 				} else {
 					swal("", objData.msg, "error");
 				}
@@ -281,6 +281,18 @@ if (document.querySelector("#txtCiudad")) {
 	ciudad.addEventListener('keyup', function () {
 		let c = this.value;
 		fntViewPago();
+	});
+}
+
+if(document.querySelector("#condiciones")){
+	let opt = document.querySelector("#condiciones");
+	opt.addEventListener('click', function(){
+		let opcion = this.checked;
+		if(opcion){
+			document.querySelector('#optMetodoPago').classList.remove("notBlock");
+		}else{
+			document.querySelector('#optMetodoPago').classList.add("notBlock");
+		}
 	});
 }
 

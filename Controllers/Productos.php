@@ -213,3 +213,5 @@ class Productos extends Controllers
         die();
     }
 }
+
+?>

@@ -59,14 +59,14 @@ $detalle = $data['pedido']['detalle'];
 <body>
     <div>
         <br>
-        <p class="text-center">Se ga generado una orden de pago, a continuación encontraran los datos de tu compra.</p>
+        <p class="text-center">Se ga generado una orden de pago, a continuación encontraras los datos de tu compra.</p>
         <br>
         <hr>
         <br>
         <table>
             <tr>
                 <td width="33.33%">
-                    <img class="logo" src="<?= media(); ?>/tienda/images/logo.png" alt="Logo">
+                    <img class="logo" src="https://i.imgur.com/P5fwFtr.png" alt="Logo">
                 </td>
                 <td width="33.33%">
                     <div class="text-center">
@@ -106,7 +106,7 @@ $detalle = $data['pedido']['detalle'];
             </tr>
             <tr>
                 <td>Dirección de envío: </td>
-                <td><?= $orden['tipopago'] ?></td>
+                <td><?= $orden['direccion_envio'] ?></td>
             </tr>
         </table>
         <table>

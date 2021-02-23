@@ -232,7 +232,7 @@ class Tienda extends Controllers
 					$_SESSION['idUser'] = $request_user;
 					$_SESSION['login'] = true;
 					$this->login->sessionLogin($request_user);
-					//sendEmail($dataUsuario,'email_bienvenida');
+					sendEmail($dataUsuario,'email_bienvenida');
 
 				} else if ($request_user == 'exist') {
 					$arrResponse = array('status' => false, 'msg' => '¡Atención! el email ya existe, por favor ingresa otro valido.');
@@ -263,7 +263,7 @@ class Tienda extends Controllers
 				foreach ($_SESSION['arrCarrito'] as $pro) {
 					$subtotal += $pro['cantidad'] * $pro['precio'];
 				}
-				$monto = formatMoney($subtotal + COSTOENVIO);
+				$monto = $subtotal + COSTOENVIO;
 				if (empty($_POST['datapay'])) {
 					//Otros metodos de pago
 					//Crear pedido en BD
@@ -285,13 +285,15 @@ class Tienda extends Controllers
 							$cantidad = $producto['cantidad'];
 							$this->insertDetalle($request_pedido, $productoid, $precio, $cantidad);
 						}
+						//Envío correo de orden de compra
 						$infoOrden = $this->getPedido($request_pedido);
 						$dataEmailOrden = array(
-							'asunto' => "Se ha creado la orden N° " . $request_pedido,
+							'asunto' => "Se ha creado la orden No. " . $request_pedido,
 							'email' => $_SESSION['userData']['email_user'],
 							'pedido' => $infoOrden
 						);
 						sendEmail($dataEmailOrden, "email_notificacion_orden");
+						//Fin Envio Correo
 						$orden = openssl_encrypt($request_pedido, METHODENCRIPT, KEY);
 						$transaccion = openssl_encrypt($idtransaccionpaypal, METHODENCRIPT, KEY);
 						$arrResponse = array(
@@ -336,13 +338,15 @@ class Tienda extends Controllers
 									$cantidad = $producto['cantidad'];
 									$this->insertDetalle($request_pedido, $productoid, $precio, $cantidad);
 								}
+								//Envío correo de orde de compra
 								$infoOrden = $this->getPedido($request_pedido);
 								$dataEmailOrden = array(
-									'asunto' => "Se ha creado la orden N° " . $request_pedido,
+									'asunto' => "Se ha creado la orden No. " . $request_pedido,
 									'email' => $_SESSION['userData']['email_user'],
 									'pedido' => $infoOrden
 								);
 								sendEmail($dataEmailOrden, "email_notificacion_orden");
+								//Fin Envio Correo
 								$orden = openssl_encrypt($request_pedido, METHODENCRIPT, KEY);
 								$transaccion = openssl_encrypt($idtransaccionpaypal, METHODENCRIPT, KEY);
 								$arrResponse = array(
