@@ -49,7 +49,7 @@ class Pedidos extends Controllers
                     if($arrData[$i]['idtipopago'] == 1){
                         $btnView .= '<button class="btn btn-warning btn-sm" onClick="fntViewInfo('.$arrData[$i]['idpedido'].')" title="Ver Transacción"><i class="fab fa-paypal fa-x3" aria-hidden="true"></i></button> ';
                     }else{
-                        $btnView .='<button class="btn btn-secondary  btn-sm" disabled=""><i class="fa fa-paypal" aria-hidden="true"></i></button>';
+                        $btnView .='<button class="btn btn-secondary  btn-sm" disabled=""><i class="fab fa-paypal fa-x3" aria-hidden="true"></i></button>';
                     }
                 }
                 if ($_SESSION['permisosMod']['u']) {

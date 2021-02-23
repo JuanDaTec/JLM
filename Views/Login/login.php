@@ -45,7 +45,7 @@
                     <label class="control-label">CONTRASEÑA</label>
                     <input id="txtPassword" name="txtPassword" class="form-control" type="password" placeholder="Contraseña">
                 </div>
-                <div class="form-group">
+                <div class="form-group text-center">
                     <div class="utility">
                         <p class="semibold-text mb-2"><a href="#" data-toggle="flip">¿Has olvidado tu contraseña?</a></p>
                     </div>
@@ -53,6 +53,10 @@
                 <div id="alertLogin" class="text-center"></div>
                 <div class="form-group btn-container">
                     <button type="submit" class="btn btn-primary btn-block">INICIAR SESIÓN</button>
+                </div>
+                <br>
+                <div class="text-center">
+                    <p class="semibold-text mb-2"><a href="<?= base_url(); ?>">Volver al inicio</a></p>
                 </div>
             </form>
             <form id="formRecetPass" id="formRecetPass" class="forget-form" action="">
